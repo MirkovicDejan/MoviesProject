@@ -22,7 +22,11 @@ public class UserRole {
 
      @ManyToOne
      @JoinColumn(name="userId")
-    private User user;
+     private User user;
+     
+       public UserRole(Role role1,User user1){
+            this.role=role1;
+            this.user=user1;
+     }
 
-
-}
+    }
