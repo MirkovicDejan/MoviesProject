@@ -2,11 +2,11 @@ package com.moviesproject.moviesproject;
 
 public interface MethodsForTestingJUnit {
 
-    void create();
+    void create() throws Exception;
 
     void delete();
 
     void find();
 
-    void update ();
+    void update () throws Exception;
 }

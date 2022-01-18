@@ -32,21 +32,21 @@ public class RoleTest implements MethodsForTestingJUnit {
     @Override
     @Test
     public void delete() {
-        roleService.deleteRole(2);
+        roleService.deleteRole(5);
     }
 
     @Override
     @Test
     public void find() {
         Role findRole = new Role();
-        findRole = roleService.findOneRole(1);
+        findRole = roleService.findOneRole(5);
         System.out.println(findRole.getName());
     }
 
     @Override
     @Test
     public void update() {
-        Role findRoleForUpdate = roleService.findOneRole(2);
+        Role findRoleForUpdate = roleService.findOneRole(5);
         findRoleForUpdate.setName("USER");
         roleService.createRole(findRoleForUpdate);
     }

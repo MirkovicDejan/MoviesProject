@@ -37,7 +37,7 @@ public class JUnitTestForUser {
 
     @Test
     public void delete(){
-        userService.deleteUser(5);
+        userService.deleteUser(3);
     }
 
 }

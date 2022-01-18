@@ -36,11 +36,26 @@ public class UserRoleTest implements MethodsForTestingJUnit {
     @Test
     public void create() {
         UserRole userRole = new UserRole();
-        User user = userService.findOneUsre(3);
-        Role role = roleService.findOneRole(2);
+        User user = userService.findOneUsre(2);
+        Role role = roleService.findOneRole(5);
         userRole.setRole(role);
         userRole.setUser(user);
         userRoleRepository.save(userRole);
+    }
+
+    @Override
+    @Test
+    public void find() {
+        Optional<UserRole> ur = userRoleRepository.findById(6);
+        System.out.println(ur.get().getUser().getUserName());
+    }
+
+    @Override
+    @Test
+    public void update() {
+        Optional<UserRole> ur = userRoleRepository.findById(6);
+        ur.get().getRole().setName("admin");
+        userRoleRepository.save(ur.get());
     }
 
     @Override
@@ -49,18 +64,4 @@ public class UserRoleTest implements MethodsForTestingJUnit {
         userRoleRepository.deleteById(6);
     }
 
-    @Override
-    @Test
-    public void find() {
-        Optional<UserRole> ur = userRoleRepository.findById(6);
-        System.out.println(ur.get().toString());
-    }
-
-    @Override
-    @Test
-    public void update() {
-        Optional<UserRole> ur = userRoleRepository.findById(6);
-        ur.get().getRole().setName("user");
-        userRoleRepository.save(ur.get());
-    }
 }
