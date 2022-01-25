@@ -1,24 +1,33 @@
+-- User data
 insert into User (user_id, user_name, first_name, last_name, adress, phone_number, email, password) values (100, 'U', 'First', 'Last', 'ulica', 'tel broj', 'user@', 'sifra');
 insert into User (user_id, user_name, first_name, last_name, adress, phone_number, email, password) values (101, 'U1', 'First1', 'Last1', 'ulica1', 'tel broj1', 'user@1', 'sifra1');
 insert into User (user_id, user_name, first_name, last_name, adress, phone_number, email, password) values (102, 'U2', 'First2', 'Last2', 'ulica2', 'tel broj2', 'user@2', 'sifra2');
 insert into User (user_id, user_name, first_name, last_name, adress, phone_number, email, password) values (103, 'U3', 'First3', 'Last3', 'ulica3', 'tel broj3', 'user@3', 'sifra3');
 insert into User (user_id, user_name, first_name, last_name, adress, phone_number, email, password) values (104, 'U4', 'First4', 'Last4', 'ulica4', 'tel broj4', 'user@4', 'sifra4');
 
-insert into Role (role_id, name) values (101, 'TEST');
-insert into Role (role_id, name) values (102, 'GUEST');
-insert into Role (role_id, name) values (103, 'ADMIN');
-insert into Role (role_id, name) values (104, 'USER');
-insert into Role (role_id, name) values (105, 'SUPER_USER');
+-- Role data
+INSERT INTO Role (role_id, name) VALUES (1, 'TEST');
+SELECT nextval('hibernate_sequence');
+INSERT INTO Role (role_id, name) VALUES (2, 'GUEST');
+SELECT nextval('hibernate_sequence');
+INSERT INTO Role (role_id, name) VALUES (3, 'ADMIN');
+SELECT nextval('hibernate_sequence');
+INSERT INTO Role (role_id, name) VALUES (4, 'USER');
+SELECT nextval('hibernate_sequence');
+INSERT INTO Role (role_id, name) VALUES (5, 'SUPER_USER');
+SELECT nextval('hibernate_sequence');
 
-insert into User_Role (user_role_id, role_id, user_id) values (100, 101, 100);
-insert into User_Role (user_role_id, role_id, user_id) values (101, 104, 101);
-insert into User_Role (user_role_id, role_id, user_id) values (102, 104, 102);
-insert into User_Role (user_role_id, role_id, user_id) values (103, 103, 103);
+-- UserRole data
+INSERT INTO User_Role (user_role_id, role_id, user_id) VALUES (100, 1, 100);
+INSERT INTO User_Role (user_role_id, role_id, user_id) VALUES (101, 4, 101);
+INSERT INTO User_Role (user_role_id, role_id, user_id) VALUES (102, 4, 102);
+INSERT INTO User_Role (user_role_id, role_id, user_id) VALUES (103, 3, 103);
 
-insert into Language (language_id, name, code) values (100, 'Serb', 'srb');
-insert into Language (language_id, name, code) values (101, 'Englisch', 'eng');
-insert into Language (language_id, name, code) values (102, 'Deutsch', 'ger');
-insert into Language (language_id, name, code) values (103, 'Croatian', 'cro');
+-- Language data
+INSERT INTO Language (language_id, name, code) VALUES (100, 'Serb', 'srb');
+INSERT INTO Language (language_id, name, code) VALUES (101, 'Englisch', 'eng');
+INSERT INTO Language (language_id, name, code) VALUES (102, 'Deutsch', 'ger');
+INSERT INTO Language (language_id, name, code) VALUES (103, 'Croatian', 'cro');
 
 insert into Country (country_id, name, code) values (100, 'Serbia', 'SRB');
 insert into Country (country_id, name, code) values (101, 'Croatia', 'CRO');

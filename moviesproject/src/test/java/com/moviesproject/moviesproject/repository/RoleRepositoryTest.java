@@ -1,74 +1,97 @@
 package com.moviesproject.moviesproject.repository;
 
-import com.moviesproject.moviesproject.model.Country;
 import com.moviesproject.moviesproject.model.Role;
-import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.dao.EmptyResultDataAccessException;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 
 class RoleRepositoryTest extends AbstractRepository {
 
-    @Autowired
-    private RoleRepository repository;
+	@Autowired
+	private RoleRepository repository;
 
-    @Test
-    public void getAll() {
-        int size = repository.findAll().size();
-        assertThat(size).isGreaterThan(0);
-    }
+	@Test
+	public void checkCount() {
+		long count = repository.count();
+		assertThat(count).isEqualTo(5L);
+	}
 
-    @Test
-    public void save() {
-        int sizeBeforeSave = repository.findAll().size();
-        Role role = new Role();
-        role.setName("SUPER_GUEST");
-        entityManager.persist(role);
-        entityManager.flush();
-        // when
-        Role found = repository.findByName("SUPER_GUEST");
-        // then
-        assertThat(found).isNotNull();
-        assertThat(found.getName()).isEqualTo(role.getName());
-        //size
-        int sizeAfterSize = repository.findAll().size();
-        assertThat(sizeAfterSize).isGreaterThan(sizeBeforeSave);
-    }
+	@Test
+	public void findOne() {
+		Role role = repository.getById(3);
 
-    @Test
-    public void findOne() {
-        Optional<Role> r = repository.findById(101);
-        if (r.isPresent()) {
-            assertThat(r.get()).isNotNull();
-            assertThat(r.get().getRoleId()).isEqualTo(101);
-        }
-    }
+		assertThat(role).isNotNull();
+		assertThat(role.getRoleId()).isEqualTo(3);
+		assertThat(role.getName()).isEqualTo("ADMIN");
+	}
 
-    @Test
-    public void update() {
-        Optional<Role> r = repository.findById(101);
-        if (r.isPresent()) {
-            r.get().setName("Change");
-            Optional<Role> r2 = repository.findById(101);
-            assertThat(r2.get()).isEqualTo(r.get());
-        }
-    }
+	@Test
+	public void notFound() {
+		Exception exception = Assertions.assertThrows(EntityNotFoundException.class, () -> {
+			Role role = repository.getById(10);
+			role.getName();
+		});
 
-    @Test
-    public void delete() {
-        Integer id = 101;
-        boolean isExistBeforeDelete = repository.findById(id).isPresent();
-        repository.deleteById(id);
-        boolean notExistAfterDelete = repository.findById(id).isPresent();
-        assertTrue(isExistBeforeDelete);
-        assertFalse(notExistAfterDelete);
-    }
+		String expectedMessage = "Unable to find com.moviesproject.moviesproject.model.Role with id 10";
+		String actualMessage = exception.getMessage();
+
+		Assertions.assertTrue(actualMessage.contains(expectedMessage));
+	}
+
+	@Test
+	public void save() {
+		long sizeBeforeSave = repository.count();
+
+		String roleName = "SUPER_GUEST";
+
+		Role role = new Role();
+		role.setName(roleName);
+		entityManager.persistAndFlush(role);
+
+		// when
+		Role found = repository.findByName(roleName);
+		// then
+		assertThat(found).isNotNull();
+		assertThat(found.getName()).isEqualTo(role.getName());
+
+		long sizeAfterSize = repository.count();
+		assertThat(sizeAfterSize).isGreaterThan(sizeBeforeSave);
+	}
+
+	@Test
+	public void update() {
+
+		Integer roleId = 1;
+		String roleNameUpdate = "GUEST_ROLE";
+
+		Optional<Role> optionalRole = repository.findById(roleId);
+
+		optionalRole.ifPresent(role -> {
+			role.setName(roleNameUpdate);
+			entityManager.persistAndFlush(role);
+
+			Role found = repository.findByName(roleNameUpdate);
+
+			assertThat(found.getRoleId()).isEqualTo(roleId);
+			assertThat(found.getName()).isEqualTo(roleNameUpdate);
+		});
+	}
+
+	@Test
+	public void delete() {
+		repository.deleteById(2);
+		assertThat(repository.count()).isEqualTo(4);
+	}
+
+	@Test
+	public void deleteNotExist() {
+		Assertions.assertThrows(EmptyResultDataAccessException.class, () -> {
+			repository.deleteById(20);
+		});
+	}
 }
