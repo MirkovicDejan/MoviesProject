@@ -10,10 +10,9 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Data
 public class UserRole {
-
      @Id()
      @GeneratedValue(strategy = GenerationType.AUTO)
-     @Column(name="userRoleId",insertable = false,updatable = false)
+     @Column(name="userRoleId")
      private Integer userRoleId;
 
      @ManyToOne
@@ -23,10 +22,11 @@ public class UserRole {
      @ManyToOne
      @JoinColumn(name="userId")
      private User user;
-     
-       public UserRole(Role role1,User user1){
+
+     public UserRole(Role role1,User user1){
             this.role=role1;
             this.user=user1;
      }
 
-    }
+
+}

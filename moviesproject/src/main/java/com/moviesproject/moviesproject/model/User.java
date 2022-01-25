@@ -10,7 +10,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Data
 public class User {
-
     @Id()
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name ="userId")
@@ -34,7 +33,7 @@ public class User {
     @Column(name="email",length = 50)
     private String email;
 
-    @Column(name="password",length=255)
+    @Column(name="password",length = 255)
     private String password;
 
     public User(String userName, String firstName, String lastName, String adress, String phoneNumber, String email,String password) {
@@ -46,5 +45,6 @@ public class User {
         this.email = email;
         this.password = password;
     }
+
 
 }

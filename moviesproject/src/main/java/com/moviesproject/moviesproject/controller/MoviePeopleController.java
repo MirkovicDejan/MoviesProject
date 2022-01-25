@@ -1,14 +1,11 @@
 package com.moviesproject.moviesproject.controller;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import com.moviesproject.moviesproject.dto.DTOMoviePeople;
 import com.moviesproject.moviesproject.model.MoviePeople;
 import com.moviesproject.moviesproject.service.MoviePeopleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 @RestController

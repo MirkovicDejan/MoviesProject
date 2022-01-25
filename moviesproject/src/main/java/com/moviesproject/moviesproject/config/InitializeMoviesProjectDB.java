@@ -1,16 +1,17 @@
 package com.moviesproject.moviesproject.config;
-
-import com.moviesproject.moviesproject.model.*;
+/*
+//import com.moviesproject.moviesproject.model.*;
 import com.moviesproject.moviesproject.repository.UserRoleRepository;
+import com.moviesproject.moviesproject.repository.model.*;
 import com.moviesproject.moviesproject.service.*;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
 
-@Component
+
+//@Component
 @RequiredArgsConstructor
 public class InitializeMoviesProjectDB implements CommandLineRunner {
     private static final Logger logger = LoggerFactory.getLogger(InitializeMoviesProjectDB.class);
@@ -106,4 +107,4 @@ public class InitializeMoviesProjectDB implements CommandLineRunner {
         genereService.save(genere1);
     }
 }
-
+*/

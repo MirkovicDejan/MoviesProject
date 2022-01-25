@@ -4,12 +4,9 @@ import com.moviesproject.moviesproject.dto.DTOGenere;
 import com.moviesproject.moviesproject.model.Genere;
 import com.moviesproject.moviesproject.service.GenereService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor

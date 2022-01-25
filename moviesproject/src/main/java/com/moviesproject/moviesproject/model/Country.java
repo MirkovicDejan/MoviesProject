@@ -22,4 +22,9 @@ public class Country {
     @Column(name="code",length = 10)
     private char code [];
 
+    public Country(Integer countryId, String name, char[] code) {
+        this.countryId = countryId;
+        this.name = name;
+        this.code = code;
+    }
 }

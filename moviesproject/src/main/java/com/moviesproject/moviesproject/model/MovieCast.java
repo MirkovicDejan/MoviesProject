@@ -14,7 +14,7 @@ public class MovieCast {
     @Id()
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="movieCastId",insertable = false,updatable = false)
-    private Integer movieCastIdId;
+    private Integer movieCastId;
 
     @ManyToOne()
     @JoinColumn(name="contentId")

@@ -1,4 +1,4 @@
-package com.moviesproject.moviesproject.service;
+/*package com.moviesproject.moviesproject.service;
 
 import com.moviesproject.moviesproject.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -12,10 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class MyUserDeatilsService implements UserDetailsService {
+/*public class MyUserDeatilsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         return new User("Dejan","Dejan",new ArrayList<>());
     }
 }
+*/

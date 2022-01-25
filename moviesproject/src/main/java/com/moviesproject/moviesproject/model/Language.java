@@ -21,4 +21,10 @@ public class Language {
 
     @Column(name="code",length = 10)
     private char code [];
+
+    public Language(Integer languageId, String name, char[] code) {
+        this.languageId = languageId;
+        this.name = name;
+        this.code = code;
+    }
 }

@@ -5,12 +5,10 @@ import com.moviesproject.moviesproject.dto.DTOContentType;
 import com.moviesproject.moviesproject.model.ContentType;
 import com.moviesproject.moviesproject.service.ContentTypeService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor

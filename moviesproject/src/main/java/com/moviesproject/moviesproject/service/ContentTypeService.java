@@ -1,12 +1,10 @@
 package com.moviesproject.moviesproject.service;
 
-import com.moviesproject.moviesproject.dto.DTOContentType;
 import com.moviesproject.moviesproject.model.ContentType;
 import com.moviesproject.moviesproject.repository.ContentTypeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
