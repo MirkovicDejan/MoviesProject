@@ -52,8 +52,9 @@ class MovieRoleRepositoryTest {
         Optional<MovieRole> mr = repository.findById(101);
         if (mr.isPresent()) {
             mr.get().setName("Changed");
+            MovieRole save = repository.save(mr.get());
             Optional<MovieRole> mr1 = repository.findById(101);
-            assertThat(mr1.get()).isEqualTo(mr.get());
+            assertThat(mr1.get().getName()).isEqualTo(save.getName());
         }
     }
 

@@ -53,8 +53,9 @@ class ContentRepository2Test {
         Optional<Content> c = repository.findById(101);
         if (c.isPresent()) {
             c.get().setDuration(50);
+            Content save = repository.save(c.get());
             Optional<Content> c2 = repository.findById(101);
-            assertThat(c.get()).isEqualTo(c.get());
+            assertThat(c2.get().getDuration()).isEqualTo(save.getDuration());
         }
     }
 

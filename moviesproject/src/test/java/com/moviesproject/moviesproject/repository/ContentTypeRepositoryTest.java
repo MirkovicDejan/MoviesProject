@@ -52,8 +52,9 @@ class ContentTypeRepositoryTest {
         Optional<ContentType> ct = repository.findById(101);
         if (ct.isPresent()) {
             ct.get().setName("Change");
+            ContentType save = repository.save(ct.get());
             Optional<ContentType> ct2 = repository.findById(101);
-            assertThat(ct.get()).isEqualTo(ct2.get());
+            assertThat(ct2.get().getName()).isEqualTo(save.getName());
         }
     }
 

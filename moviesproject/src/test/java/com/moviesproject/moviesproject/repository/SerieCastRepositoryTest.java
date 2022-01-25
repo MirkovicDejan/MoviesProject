@@ -55,8 +55,9 @@ class SerieCastRepositoryTest {
         Optional<SerieCast> sc = repository.findById(101);
         if (sc.isPresent()) {
             sc.get().setMovieRole(mr);
+            SerieCast save = repository.save(sc.get());
             Optional<SerieCast> sc2 = repository.findById(101);
-            assertThat(sc2.get()).isEqualTo(sc.get());
+            assertThat(sc2.get().getMovieRole()).isEqualTo(save.getMovieRole());
         }
     }
 

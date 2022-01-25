@@ -62,8 +62,9 @@ class CountryRepositoryTest extends AbstractRepository {
         Optional<Country> c = repository.findById(101);
         if (c.isPresent()) {
             c.get().setName("Change");
+            Country save = repository.save(c.get());
             Optional<Country> c2 = repository.findById(101);
-            assertThat(c2.get()).isEqualTo(c.get());
+            assertThat(c2.get().getName()).isEqualTo(save.getName());
         }
     }
 

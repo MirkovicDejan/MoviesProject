@@ -53,8 +53,9 @@ class ContentCommentRepositoryTest {
         Optional<ContentComment> cm = repository.findById(101);
         if (cm.isPresent()) {
             cm.get().setComment("This is a changed comment");
+            ContentComment save = repository.save(cm.get());
             Optional<ContentComment> cm2 = repository.findById(101);
-            assertThat(cm.get()).isEqualTo(cm2.get());
+            assertThat(cm2.get().getComment()).isEqualTo(save.getComment());
         }
     }
 

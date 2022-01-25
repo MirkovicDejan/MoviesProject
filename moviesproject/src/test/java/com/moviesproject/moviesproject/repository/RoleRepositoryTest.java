@@ -57,8 +57,9 @@ class RoleRepositoryTest extends AbstractRepository {
         Optional<Role> r = repository.findById(101);
         if (r.isPresent()) {
             r.get().setName("Change");
+            Role save = repository.save(r.get());
             Optional<Role> r2 = repository.findById(101);
-            assertThat(r2.get()).isEqualTo(r.get());
+            assertThat(r2.get().getName()).isEqualTo(save.getName());
         }
     }
 

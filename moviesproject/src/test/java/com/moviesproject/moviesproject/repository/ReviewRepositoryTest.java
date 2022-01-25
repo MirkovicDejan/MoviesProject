@@ -55,8 +55,9 @@ class ReviewRepositoryTest {
         Optional<Review> r = repository.findById(104);
         if (r.isPresent()) {
             r.get().setUser(userUpdate);
+            Review save = repository.save(r.get());
             Optional<Review> r2 = repository.findById(104);
-            assertThat(r2.get()).isEqualTo(r.get());
+            assertThat(r2.get().getUser()).isEqualTo(save.getUser());
         }
     }
 

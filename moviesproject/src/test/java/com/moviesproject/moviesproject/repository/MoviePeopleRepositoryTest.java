@@ -52,8 +52,9 @@ class MoviePeopleRepositoryTest {
         Optional<MoviePeople> mc = repository.findById(101);
         if (mc.isPresent()) {
             mc.get().setFirstName("Changed");
+            MoviePeople save =  repository.save(mc.get());
             Optional<MoviePeople> mc2 = repository.findById(101);
-            assertThat(mc2.get()).isEqualTo(mc.get());
+            assertThat(mc2.get().getFirstName()).isEqualTo(save.getFirstName());
         }
     }
 
