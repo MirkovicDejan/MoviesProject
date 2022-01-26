@@ -92,13 +92,11 @@ class ContentServiceTest {
 
     @Test
     void findContentByRating() {
-        List<Content>byRating = service.findContentByRating();
-        assertThat(service.findContentByRating()).isEqualTo(byRating);
+
     }
 
     @Test
     void findContentByReleaseDate() {
-        List<Content>DESC= service.findContentByReleaseDate();
-        assertThat(service.findContentByReleaseDate()).isEqualTo(DESC);
+
     }
 }
