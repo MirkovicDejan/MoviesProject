@@ -37,7 +37,7 @@ class RoleRepositoryTest extends AbstractRepository {
 			role.getName();
 		});
 
-		String expectedMessage = "Unable to find com.moviesproject.moviesproject.model.Role with id 10";
+		String expectedMessage = "Unable to find com.moviesproject.moviesproject.m*-odel.Role with id 10";
 		String actualMessage = exception.getMessage();
 
 		Assertions.assertTrue(actualMessage.contains(expectedMessage));

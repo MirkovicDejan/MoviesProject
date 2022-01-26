@@ -12,7 +12,7 @@ import java.util.Date;
 @Data
 public class DTOContent{
 
-    private ContentType contentType;
+    private DTOContentType contentType;
     private Country country;
     private Language language;
     private String title;
@@ -25,7 +25,7 @@ public class DTOContent{
 
     public Content createContent(){
         Content content = new Content();
-        content.setContentType(contentType);
+        content.setContentType(contentType.createContentType());
         content.setCountry(country);
         content.setLanguage(language);
         content.setTitle(title);

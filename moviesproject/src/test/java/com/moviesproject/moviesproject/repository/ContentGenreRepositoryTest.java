@@ -1,6 +1,7 @@
 package com.moviesproject.moviesproject.repository;
 
-import com.moviesproject.moviesproject.model.ContentGenere;
+
+import com.moviesproject.moviesproject.model.ContentGenre;
 import com.moviesproject.moviesproject.model.Genre;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -31,7 +32,7 @@ class ContentGenreRepositoryTest {
     @Test
     public void save() {
         int beforeSaveSize = repository.findAll().size();
-        ContentGenere cg = new ContentGenere();
+        ContentGenre cg = new ContentGenre();
         entityManager.persist(cg);
         entityManager.flush();
         int afterSaveSize = repository.findAll().size();
@@ -40,7 +41,7 @@ class ContentGenreRepositoryTest {
 
     @Test
     public void findOne() {
-        Optional<ContentGenere> cg = repository.findById(101);
+        Optional<ContentGenre> cg = repository.findById(101);
         if (cg.isPresent()) {
             assertThat(cg.get()).isNotNull();
             assertThat(cg.get().getContentGenereId()).isEqualTo(101);
@@ -51,11 +52,11 @@ class ContentGenreRepositoryTest {
     public void update() {
         Genre g = new Genre();
         g.setName("Change");
-        Optional<ContentGenere> cg = repository.findById(101);
+        Optional<ContentGenre> cg = repository.findById(101);
         if (cg.isPresent()) {
             cg.get().setGenre(g);
-            ContentGenere save = repository.save(cg.get());
-            Optional<ContentGenere> cg2 = repository.findById(101);
+            ContentGenre save = repository.save(cg.get());
+            Optional<ContentGenre> cg2 = repository.findById(101);
             assertThat(cg2.get().getContent()).isEqualTo(save.getContent());
         }
     }
