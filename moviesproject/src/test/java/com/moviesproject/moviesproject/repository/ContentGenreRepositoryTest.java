@@ -1,8 +1,7 @@
 package com.moviesproject.moviesproject.repository;
 
-import com.moviesproject.moviesproject.model.ContentComment;
 import com.moviesproject.moviesproject.model.ContentGenere;
-import com.moviesproject.moviesproject.model.Genere;
+import com.moviesproject.moviesproject.model.Genre;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 @RunWith(SpringRunner.class)
 @DataJpaTest
-class ContentGenereRepositoryTest {
+class ContentGenreRepositoryTest {
 
     @Autowired
     private ContentGenereRepository repository;
@@ -50,11 +49,11 @@ class ContentGenereRepositoryTest {
 
     @Test
     public void update() {
-        Genere g = new Genere();
+        Genre g = new Genre();
         g.setName("Change");
         Optional<ContentGenere> cg = repository.findById(101);
         if (cg.isPresent()) {
-            cg.get().setGenere(g);
+            cg.get().setGenre(g);
             ContentGenere save = repository.save(cg.get());
             Optional<ContentGenere> cg2 = repository.findById(101);
             assertThat(cg2.get().getContent()).isEqualTo(save.getContent());

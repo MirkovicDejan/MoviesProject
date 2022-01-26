@@ -1,7 +1,6 @@
 package com.moviesproject.moviesproject.repository;
 
-import com.moviesproject.moviesproject.model.Genere;
-import com.moviesproject.moviesproject.model.Role;
+import com.moviesproject.moviesproject.model.Genre;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +14,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 @RunWith(SpringRunner.class)
 @DataJpaTest
-class GenereRepositoryTest {
+class GenreRepositoryTest {
 
     @Autowired
-    private GenereRepository repository;
+    private GenreRepository repository;
     @Autowired
     protected TestEntityManager entityManager;
 
@@ -31,15 +30,15 @@ class GenereRepositoryTest {
     @Test
     public void save() {
         int sizeBeforeSave = repository.findAll().size();
-        Genere genere = new Genere();
-        genere.setName("Example");
-        entityManager.persist(genere);
+        Genre genre = new Genre();
+        genre.setName("Example");
+        entityManager.persist(genre);
         entityManager.flush();
         // when
-        Genere found = repository.findByName("Example");
+        Genre found = repository.findByName("Example");
         // then
         assertThat(found).isNotNull();
-        assertThat(found.getName()).isEqualTo(genere.getName());
+        assertThat(found.getName()).isEqualTo(genre.getName());
         //size
         int sizeAfterSize = repository.findAll().size();
         assertThat(sizeAfterSize).isGreaterThan(sizeBeforeSave);
@@ -47,7 +46,7 @@ class GenereRepositoryTest {
 
     @Test
     public void findOne() {
-        Optional<Genere> genere = repository.findById(101);
+        Optional<Genre> genere = repository.findById(101);
         if (genere.isPresent()) {
             assertThat(genere.get()).isNotNull();
             assertThat(genere.get().getGenereId()).isEqualTo(101);
@@ -56,11 +55,11 @@ class GenereRepositoryTest {
 
     @Test
     public void update() {
-        Optional<Genere> genere = repository.findById(101);
+        Optional<Genre> genere = repository.findById(101);
         if (genere.isPresent()) {
             genere.get().setName("Change");
-            Genere save = repository.save(genere.get());
-            Optional<Genere> genere1 = repository.findById(101);
+            Genre save = repository.save(genere.get());
+            Optional<Genre> genere1 = repository.findById(101);
             assertThat(genere1.get().getName()).isEqualTo(save.getName());
         }
     }
@@ -75,4 +74,11 @@ class GenereRepositoryTest {
         assertFalse(notExistAfterDelete);
     }
 
+    @Test
+    void getByName() {
+        Genre genre = repository.findByName("ACTIONS");
+
+        assertThat(genre).isNotNull();
+        assertThat(genre.getGenereId()).isEqualTo(10);
+    }
 }

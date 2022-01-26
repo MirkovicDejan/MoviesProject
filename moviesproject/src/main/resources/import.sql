@@ -47,10 +47,10 @@ insert into Content (content_id, content_type_id, country_id, language_id, title
 insert into Content_Comment (comment_id, user_id, content_id, comment) values (100, 101, 101, 'Very good film, with to much actions and funny things');
 insert into Content_Comment (comment_id, user_id, content_id, comment) values (101, 101, 101, 'Powerful action movie :D !');
 
-insert into Genere (genere_id, name) values (100, 'ACTIONS');
-insert into Genere (genere_id, name) values (101, 'SPORTS');
-insert into Genere (genere_id, name) values (102, 'CRIMES');
-insert into Genere (genere_id, name) values (103, 'ROMANTICS');
+insert into Genre (genere_id, name) values (100, 'ACTIONS');
+insert into Genre (genere_id, name) values (101, 'SPORTS');
+insert into Genre (genere_id, name) values (102, 'CRIMES');
+insert into Genre (genere_id, name) values (103, 'ROMANTICS');
 
 insert into Content_Genere (content_genere_id, genere_id, content_id) values (100, 100, 100);
 insert into Content_Genere (content_genere_id, genere_id, content_id) values (101, 100, 101);

@@ -1,7 +1,7 @@
 package com.moviesproject.moviesproject.service;
 
-import com.moviesproject.moviesproject.model.Genere;
-import com.moviesproject.moviesproject.repository.GenereRepository;
+import com.moviesproject.moviesproject.model.Genre;
+import com.moviesproject.moviesproject.repository.GenreRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,31 +12,31 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class GenereService {
 
-    private final GenereRepository genereRepository;
+    private final GenreRepository genreRepository;
 
-    public Genere save(Genere genere) {
-        return genereRepository.save(genere);
+    public Genre save(Genre genre) {
+        return genreRepository.save(genre);
     }
 
-    public List<Genere> getAll() {
-        List<Genere> all = genereRepository.findAll();
+    public List<Genre> getAll() {
+        List<Genre> all = genreRepository.findAll();
         return all;
     }
 
-    public Genere findOneGenere(Integer id) {
-        Optional<Genere> g = genereRepository.findById(id);
+    public Genre findOneGenere(Integer id) {
+        Optional<Genre> g = genreRepository.findById(id);
         if (g.isPresent()) {
             return g.get();
         }
         return null;
     }
 
-    public Genere update(Genere find) {
-        return genereRepository.save(find);
+    public Genre update(Genre find) {
+        return genreRepository.save(find);
     }
 
     public String delete(Integer id) {
-        genereRepository.deleteById(id);
+        genreRepository.deleteById(id);
         return "Genere with id : " + String.valueOf(id) + "is delete !";
     }
 }

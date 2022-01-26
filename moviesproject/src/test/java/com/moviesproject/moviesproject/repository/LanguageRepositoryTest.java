@@ -1,6 +1,5 @@
 package com.moviesproject.moviesproject.repository;
 
-import com.moviesproject.moviesproject.model.Genere;
 import com.moviesproject.moviesproject.model.Language;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;

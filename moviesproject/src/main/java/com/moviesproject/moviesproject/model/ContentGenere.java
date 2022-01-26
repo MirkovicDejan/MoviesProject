@@ -18,7 +18,7 @@ public class ContentGenere {
 
     @ManyToOne
     @JoinColumn(name="genereId")
-    private Genere genere;
+    private Genre genre;
 
 
 
