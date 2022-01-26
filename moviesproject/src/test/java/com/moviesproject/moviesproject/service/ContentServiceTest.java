@@ -92,11 +92,11 @@ class ContentServiceTest {
 
     @Test
     void findContentByRating() {
-
+          // some
     }
 
     @Test
     void findContentByReleaseDate() {
-
+      //some
     }
 }
