@@ -54,8 +54,9 @@ class UserRoleRepositoryTest {
         Optional<UserRole> ur = repository.findById(101);
         if (ur.isPresent()) {
             ur.get().setRole(r);
+            UserRole save = repository.save(ur.get());
             Optional<UserRole> ur2 = repository.findById(101);
-            assertThat(ur2.get()).isEqualTo(ur.get());
+            assertThat(ur2.get().getRole()).isEqualTo(save.getRole());
         }
     }
 

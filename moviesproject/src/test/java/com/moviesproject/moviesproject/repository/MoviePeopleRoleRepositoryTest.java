@@ -55,8 +55,9 @@ class MoviePeopleRoleRepositoryTest {
         Optional<MoviePeopleRole> mpc = repository.findById(101);
         if (mpc.isPresent()) {
             mpc.get().setMovieRole(mr);
+            MoviePeopleRole save = repository.save(mpc.get());
             Optional<MoviePeopleRole> mpc2 = repository.findById(101);
-            assertThat(mpc2.get()).isEqualTo(mpc.get());
+            assertThat(mpc2.get().getMovieRole()).isEqualTo(save.getMovieRole());
         }
     }
 

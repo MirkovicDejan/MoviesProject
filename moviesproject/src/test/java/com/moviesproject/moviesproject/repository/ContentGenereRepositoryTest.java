@@ -55,8 +55,9 @@ class ContentGenereRepositoryTest {
         Optional<ContentGenere> cg = repository.findById(101);
         if (cg.isPresent()) {
             cg.get().setGenere(g);
+            ContentGenere save = repository.save(cg.get());
             Optional<ContentGenere> cg2 = repository.findById(101);
-            assertThat(cg.get()).isEqualTo(cg2.get());
+            assertThat(cg2.get().getContent()).isEqualTo(save.getContent());
         }
     }
 

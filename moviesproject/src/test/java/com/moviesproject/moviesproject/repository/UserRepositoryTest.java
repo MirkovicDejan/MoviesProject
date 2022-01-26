@@ -53,8 +53,9 @@ class UserRepositoryTest {
         Optional<User> user = repository.findById(101);
         if (user.isPresent()) {
             user.get().setUserName("Update");
+            User save = repository.save(user.get());
             Optional<User> user1 = repository.findById(101);
-            assertThat(user1.get()).isEqualTo(user.get());
+            assertThat(user1.get().getUserName()).isEqualTo(save.getUserName());
         }
     }
 

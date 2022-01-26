@@ -55,8 +55,9 @@ class MovieCastRepositoryTest {
         Optional<MovieCast> mc = repository.findById(101);
         if (mc.isPresent()) {
             mc.get().setMoviePeople(mv);
+            MovieCast save = repository.save(mc.get());
             Optional<MovieCast> mc2 = repository.findById(101);
-            assertThat(mc2.get()).isEqualTo(mc.get());
+            assertThat(mc2.get().getMoviePeople()).isEqualTo(save.getMoviePeople());
         }
     }
 

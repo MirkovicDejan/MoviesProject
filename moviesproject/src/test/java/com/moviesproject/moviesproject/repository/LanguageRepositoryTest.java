@@ -60,8 +60,9 @@ class LanguageRepositoryTest {
         Optional<Language> l = repository.findById(101);
         if (l.isPresent()) {
             l.get().setName("Change");
+             Language save = repository.save(l.get());
             Optional<Language> l1 = repository.findById(101);
-            assertThat(l1.get()).isEqualTo(l.get());
+            assertThat(l1.get().getName()).isEqualTo(save.getName());
         }
     }
 

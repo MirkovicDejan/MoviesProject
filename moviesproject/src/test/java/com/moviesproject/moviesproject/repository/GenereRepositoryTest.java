@@ -59,8 +59,9 @@ class GenereRepositoryTest {
         Optional<Genere> genere = repository.findById(101);
         if (genere.isPresent()) {
             genere.get().setName("Change");
+            Genere save = repository.save(genere.get());
             Optional<Genere> genere1 = repository.findById(101);
-            assertThat(genere1.get()).isEqualTo(genere.get());
+            assertThat(genere1.get().getName()).isEqualTo(save.getName());
         }
     }
 

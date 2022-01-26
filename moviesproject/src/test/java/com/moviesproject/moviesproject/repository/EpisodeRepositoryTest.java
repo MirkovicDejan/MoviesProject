@@ -52,8 +52,9 @@ class EpisodeRepositoryTest {
         Optional<Episode> e = repository.findById(101);
         if (e.isPresent()) {
             e.get().setName("Change");
+            Episode save = repository.save(e.get());
             Optional<Episode> e2 = repository.findById(101);
-            assertThat(e2.get()).isEqualTo(e.get());
+            assertThat(e2.get().getName()).isEqualTo(save.getName());
         }
     }
 

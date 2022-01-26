@@ -53,8 +53,9 @@ class SeasonRepositoryTest {
         Optional<Season> s = repository.findById(101);
         if (s.isPresent()) {
             s.get().setName("Changed");
+            Season save = repository.save(s.get());
             Optional<Season> s2 = repository.findById(101);
-            assertThat(s2.get()).isEqualTo(s2.get());
+            assertThat(s2.get().getName()).isEqualTo(save.getName());
         }
     }
 
