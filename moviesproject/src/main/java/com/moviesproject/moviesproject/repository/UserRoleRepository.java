@@ -10,4 +10,5 @@ public interface UserRoleRepository extends JpaRepository<UserRole,Integer>{
 
     boolean existsByUser(User user);
 
+
 }

@@ -52,23 +52,20 @@ public class UserRoleService {
         return ("Selected UserRole with id : " + id + " don't exist !");
     }
 
-    public UserRole updateUserRole(Integer idUserRole, String userName, String firstName, String lastName, String adress, String phoneNumber, String password, String email, String nameForRole) throws Exception {
-        if (userRoleRepository.existsById(idUserRole)) {
-            UserRole userRoleForUpdate = userRoleRepository.findById(idUserRole).get();
-            userRoleForUpdate.getUser().setUserName(userName);
-            userRoleForUpdate.getUser().setFirstName(firstName);
-            userRoleForUpdate.getUser().setLastName(lastName);
-            userRoleForUpdate.getUser().setAdress(adress);
-            userRoleForUpdate.getUser().setPhoneNumber(phoneNumber);
-            userRoleForUpdate.getUser().setPassword(password);
-            userRoleForUpdate.getUser().setEmail(email);
-            userRoleForUpdate.getRole().setName(nameForRole);
-            
-            return userRoleRepository.save(userRoleForUpdate);
+    public UserRole updateUserRole(Integer userRoleId, Integer roleId, Integer userId) throws Exception {
+        if (userRoleRepository.existsById(userRoleId) && userRepository.existsById(userId) && roleRepository.existsById(roleId)) {
+            UserRole userRoleUpdate = userRoleRepository.findById(userRoleId).get();
+            User uUpdate = userRepository.findById(userId).get();
+            Role roleUpdate = roleRepository.findById(roleId).get();
+            userRoleUpdate.setUserRoleId(userRoleId);
+            userRoleUpdate.setUser(uUpdate);
+            userRoleUpdate.setRole(roleUpdate);
+            return userRoleRepository.save(userRoleUpdate);
         }
-        throw new Exception("UserRole with id : " + idUserRole + " don't exist in database !");
+        throw new Exception("User Role or User or Role don't exist in database !");
     }
 }
+
 
 
 

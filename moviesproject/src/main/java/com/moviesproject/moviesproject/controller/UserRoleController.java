@@ -35,10 +35,9 @@ public class UserRoleController {
     }
 
     @PutMapping("/update-user-role")
-    public UserRole update(@RequestParam Integer idUserRole,@RequestParam String userName,@RequestParam String firstName,@RequestParam String lastName,
-                           @RequestParam String adress,@RequestParam String phoneNumber, @RequestParam String password,
-                           @RequestParam String email,@RequestParam String nameForRole) throws Exception {
-        return userRoleService.updateUserRole(idUserRole,userName,firstName,lastName,adress,phoneNumber,password,email,nameForRole);
+    public UserRole update(@RequestParam Integer userRoleId,@RequestParam Integer roleId,@RequestParam Integer userId) throws Exception {
+      return userRoleService.updateUserRole(userRoleId,roleId,userId);
+
     }
 }
 
