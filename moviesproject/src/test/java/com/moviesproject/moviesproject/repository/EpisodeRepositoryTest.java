@@ -61,7 +61,7 @@ class EpisodeRepositoryTest {
     @Test
     public void delete() {
         Integer id = 101;
-        boolean isExistBeforeDelete = repository.findById(id).isPresent();
+        boolean isExistBeforeDelete = repository.existsById(id);
         repository.deleteById(id);
         boolean notExistAfterDelete = repository.findById(id).isPresent();
         assertTrue(isExistBeforeDelete);
