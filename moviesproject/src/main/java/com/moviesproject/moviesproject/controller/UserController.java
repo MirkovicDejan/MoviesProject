@@ -19,14 +19,22 @@ public class UserController {
     }
 
     @GetMapping("/all-users")
-    public List<DTOUser> all(){
+    public List<DTOUser> all() {
         return userService.all();
     }
 
     @GetMapping("/find-one")
-    public DTOUser one(@RequestParam Integer id){
-     return userService.one(id);
+    public DTOUser one(@RequestParam Integer id) {
+        return userService.one(id);
     }
 
+    @DeleteMapping("/delete-mapping")
+    public void delete(@RequestParam Integer id) {
+        userService.delete(id);
+    }
 
+    @PutMapping("/update-user")
+    public DTOUser update(@RequestParam Integer id,@RequestBody DTOUser dtoUser){
+        return userService.update(id,dtoUser);
+    }
 }
