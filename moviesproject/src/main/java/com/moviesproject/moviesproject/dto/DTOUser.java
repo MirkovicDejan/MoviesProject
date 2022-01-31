@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 
 @Data
 public class DTOUser {
-
     private String userName;
     private String firstName;
     private String lastName;
@@ -42,7 +41,7 @@ public class DTOUser {
 
     }
 
-    public List<DTOUser> listEntityToDto(List<User> userList){
+    public List<DTOUser> listEntityToDto(List<User> userList) {
         return userList.stream().map(x -> entityUserToDTO(x)).collect(Collectors.toList());
     }
 
