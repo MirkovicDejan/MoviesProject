@@ -28,7 +28,8 @@ public class UserRoleService {
             if (!userRoleRepository.existsByUser(userRole.getUser())) {
                 return userRoleRepository.save(userRole);
             }
-            throw new Exception(u.toString() + "in user role database exist please insert another user with difrent values!");
+            // Moras napraviti svoj Exception i njega bacati
+            throw new Exception(u + "in user role database exist please insert another user with diffrent values!");
         }
         throw new Exception("Id for role : " + roleId + ", and id for user : " + userId + " don't exist in database !");
     }
@@ -62,6 +63,9 @@ public class UserRoleService {
             userRoleUpdate.setRole(roleUpdate);
             return userRoleRepository.save(userRoleUpdate);
         }
+        // isto tako kreirati svoj exception i bacati zavisno od toga sta nije korektno
+        // ova poruka nista ne znaci
+        // mogao si npr.  pozvati findOneUserRole(userRoleId) ona vec baca exception ali i njega mora preparviti
         throw new Exception("User Role or User or Role don't exist in database !");
     }
 }
