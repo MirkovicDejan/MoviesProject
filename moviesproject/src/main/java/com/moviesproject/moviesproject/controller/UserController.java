@@ -17,4 +17,16 @@ public class UserController {
     public User saveUser(@RequestBody DTOUser dtoUser) {
         return userService.saveUser(dtoUser);
     }
+
+    @GetMapping("/all-users")
+    public List<DTOUser> all(){
+        return userService.all();
+    }
+
+    @GetMapping("/find-one")
+    public DTOUser one(@RequestParam Integer id){
+     return userService.one(id);
+    }
+
+
 }

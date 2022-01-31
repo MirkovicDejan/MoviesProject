@@ -16,6 +16,17 @@ public class DTOUser {
     private String email;
     private String password;
 
+    private static DTOUser instance;
+
+    public static DTOUser getInstanceDtoUser(){
+        if(instance == null){
+            instance = new DTOUser();
+        }
+        return instance;
+    }
+
+
+
     public DTOUser entityUserToDTO(User user) {
         DTOUser dtoUser = new DTOUser();
         dtoUser.setUserName(user.getUserName());
@@ -41,7 +52,7 @@ public class DTOUser {
 
     }
 
-    public List<DTOUser> listEntityToDto(List<User> userList) {
+    public List<DTOUser> listEntityToDto(List<User>userList) {
         return userList.stream().map(x -> entityUserToDTO(x)).collect(Collectors.toList());
     }
 

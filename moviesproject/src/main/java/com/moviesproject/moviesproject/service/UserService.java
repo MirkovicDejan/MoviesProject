@@ -1,14 +1,24 @@
 package com.moviesproject.moviesproject.service;
+
 import com.moviesproject.moviesproject.dto.DTOUser;
 import com.moviesproject.moviesproject.exception.ApiRequestException;
 import com.moviesproject.moviesproject.model.User;
 import com.moviesproject.moviesproject.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 @Service
-@RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
+
+    @Autowired
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     public User saveUser(DTOUser dtoUser) {
         User convert = dtoUser.DTOUserToEntityUser(dtoUser);
         if (userRepository.existsByUserName(convert.getUserName())) {
@@ -23,6 +33,24 @@ public class UserService {
             return userRepository.save(convert);
         }
     }
+
+    public List<DTOUser> all() {
+        List<User> findAll = userRepository.findAll();
+        if (findAll.isEmpty()) {
+            throw new ApiRequestException("Database is empty !");
+        } else {
+            return DTOUser.getInstanceDtoUser().listEntityToDto(findAll);
+        }
+    }
+
+    public DTOUser one(Integer id) {
+        if (userRepository.existsById(id)) {
+            return DTOUser.getInstanceDtoUser().entityUserToDTO(userRepository.findById(id).get());
+        } else {
+            throw new ApiRequestException("User with id : " + id + " don't exists in database !");
+        }
+    }
 }
+
 
 
