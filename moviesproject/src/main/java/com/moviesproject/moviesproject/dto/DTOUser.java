@@ -25,8 +25,6 @@ public class DTOUser {
         return instance;
     }
 
-
-
     public DTOUser entityUserToDTO(User user) {
         DTOUser dtoUser = new DTOUser();
         dtoUser.setUserName(user.getUserName());
