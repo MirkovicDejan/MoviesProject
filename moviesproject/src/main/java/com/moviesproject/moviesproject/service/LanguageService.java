@@ -39,11 +39,11 @@ public class LanguageService {
     public DTOLanguage update(Integer id, DTOLanguage dtoLanguage) {
         Language convertForUpdate = DTOLanguage.DTOLanguageToEntity(dtoLanguage);
         if(!languageRepository.existsById(id)){
-            throw new ApiRequestException("Language with id : "+id+" exists in database !");
+            throw new ApiRequestException("Language with id : "+id+" don't exists in database !");
         }else if(languageRepository.existsByName(convertForUpdate.getName())){
-            throw new ApiRequestException("Language with : "+ convertForUpdate.getName()+" exists in database !");
+            throw new ApiRequestException("Name : "+ convertForUpdate.getName()+" is in use for some Language !");
         }else if (languageRepository.existsByCode(convertForUpdate.getCode())) {
-            throw new ApiRequestException("Code is in use for some Language ! Please insert another !");
+            throw new ApiRequestException("Code : "+convertForUpdate.getCode()+"is in use for some Language ! Please insert another !");
         } else if (convertForUpdate.getName().length() > 100) {
             throw new ApiRequestException("Name for Language is to long ! Must be less then 100 characters !");
         } else if (convertForUpdate.getCode().length() > 10) {
