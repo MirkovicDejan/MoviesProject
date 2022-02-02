@@ -20,11 +20,11 @@ public class UserRoleService {
     private final RoleRepository roleRepository;
 
     public UserRole create(Integer roleId, Integer userId) throws Exception {
-        if (!roleRepository.existsById(roleId)){
-            throw new ApiRequestException("Role with id : "+roleId+" don't exists in database !");
-          }else if(!userRepository.existsById(userId)) {
-            throw new ApiRequestException("User with id : "+userId+" don't exists in database !");
-          }else {
+        if (!roleRepository.existsById(roleId)) {
+            throw new ApiRequestException("Role with id : " + roleId + " don't exists in database !");
+        } else if (!userRepository.existsById(userId)) {
+            throw new ApiRequestException("User with id : " + userId + " don't exists in database !");
+        } else {
             Role r = roleRepository.findById(roleId).get();
             User u = userRepository.findById(userId).get();
             UserRole userRole = new UserRole();
@@ -45,7 +45,7 @@ public class UserRoleService {
         if (userRoleRepository.existsById(id)) {
             return userRoleRepository.findById(id).get();
         }
-        throw new Exception("UserRole with : " + id + "don't exist in database !");
+        throw new ApiRequestException("UserRole with : " + id + "don't exist in database !");
     }
 
     public String delete(Integer id) throws Exception {
@@ -56,8 +56,14 @@ public class UserRoleService {
         return ("Selected UserRole with id : " + id + " don't exist !");
     }
 
-    public UserRole updateUserRole(Integer userRoleId, Integer roleId, Integer userId) throws Exception {
-        if (userRoleRepository.existsById(userRoleId) && userRepository.existsById(userId) && roleRepository.existsById(roleId)) {
+    public UserRole updateUserRole(Integer userRoleId, Integer roleId, Integer userId) {
+        if (!userRoleRepository.existsById(userRoleId)) {
+            throw new ApiRequestException("UserRole with id : " + userRoleId + " don't exists in database !");
+        } else if (userRepository.existsById(userId)) {
+            throw new ApiRequestException("User with id : " + userId + " don't exists in database user!");
+        } else if (!roleRepository.existsById(roleId)) {
+            throw new ApiRequestException("Role with id : " + roleId + " don't exists in database role");
+        } else {
             UserRole userRoleUpdate = userRoleRepository.findById(userRoleId).get();
             User uUpdate = userRepository.findById(userId).get();
             Role roleUpdate = roleRepository.findById(roleId).get();
@@ -66,10 +72,6 @@ public class UserRoleService {
             userRoleUpdate.setRole(roleUpdate);
             return userRoleRepository.save(userRoleUpdate);
         }
-        // isto tako kreirati svoj exception i bacati zavisno od toga sta nije korektno
-        // ova poruka nista ne znaci
-        // mogao si npr.  pozvati findOneUserRole(userRoleId) ona vec baca exception ali i njega mora preparviti
-        throw new Exception("User Role or User or Role don't exist in database !");
     }
 }
 

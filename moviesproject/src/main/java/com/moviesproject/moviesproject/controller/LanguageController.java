@@ -21,7 +21,13 @@ public class LanguageController {
     public DTOLanguage createLanguage(@RequestBody DTOLanguage dtoLanguage) {
         return languageService.createNewLanguage(dtoLanguage);
     }
-    @GetMapping("/all-language-page")
+
+    @PutMapping("/update-language")
+    public DTOLanguage updateLanguage(@RequestParam Integer id, @RequestBody DTOLanguage dtoLanguage){
+        return languageService.update(id,dtoLanguage);
+    }
+
+    @GetMapping("/all-language-pageable")
     public Page<Language> allLanguageWithPage(Pageable pageable){
         return languageService.allLanguageWithPage(pageable);
     }
@@ -36,9 +42,28 @@ public class LanguageController {
         return languageService.getByCodePage(code,pageable);
     }
 
-    @GetMapping("/get-all-page-size")
+    @GetMapping("/get-all-pageable-size")
     public Page<Language>request(@RequestParam Integer page, @RequestParam Integer size){
       return languageService.languagePagination(page,size);
+    }
+
+    @GetMapping("/get-all-pageable-asc-name-or-code")
+    public  Page<Language>findAllASCPageableField(@RequestParam Integer page, @RequestParam Integer size, @RequestParam String nameORcode){
+        return  languageService.allAsc(page,size,nameORcode);
+    }
+
+    @GetMapping("/get-all-pageable-desc-name-or-code")
+    public  Page<Language>findAllDECSPageableField(@RequestParam Integer page, @RequestParam Integer size, @RequestParam String nameORcode){
+        return  languageService.allDESC(page,size,nameORcode);
+    }
+
+    @GetMapping("/get-all-pageable-asc-id")
+    public  Page<Language>findAllASCPageableField(@RequestParam Integer page, @RequestParam Integer size, @RequestParam Integer id){
+        return  languageService.allAscID(page,size,id);
+    }
+    @GetMapping("/get-all-pageable-desc-id")
+    public  Page<Language>findAllDESCPageableField(@RequestParam Integer page, @RequestParam Integer size, @RequestParam Integer id){
+        return  languageService.allDescID(page,size,id);
     }
 
     @DeleteMapping("/delete-language")
