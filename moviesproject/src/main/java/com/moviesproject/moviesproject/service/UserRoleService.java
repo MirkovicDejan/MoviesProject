@@ -1,5 +1,6 @@
 package com.moviesproject.moviesproject.service;
 
+import com.moviesproject.moviesproject.exception.ApiRequestException;
 import com.moviesproject.moviesproject.model.Role;
 import com.moviesproject.moviesproject.model.User;
 import com.moviesproject.moviesproject.model.UserRole;
@@ -19,7 +20,11 @@ public class UserRoleService {
     private final RoleRepository roleRepository;
 
     public UserRole create(Integer roleId, Integer userId) throws Exception {
-        if (roleRepository.existsById(roleId) && userRepository.existsById(userId)) {
+        if (!roleRepository.existsById(roleId)){
+            throw new ApiRequestException("Role with id : "+roleId+" don't exists in database !");
+          }else if(!userRepository.existsById(userId)) {
+            throw new ApiRequestException("User with id : "+userId+" don't exists in database !");
+          }else {
             Role r = roleRepository.findById(roleId).get();
             User u = userRepository.findById(userId).get();
             UserRole userRole = new UserRole();
@@ -28,10 +33,8 @@ public class UserRoleService {
             if (!userRoleRepository.existsByUser(userRole.getUser())) {
                 return userRoleRepository.save(userRole);
             }
-            // Moras napraviti svoj Exception i njega bacati
-            throw new Exception(u + "in user role database exist please insert another user with diffrent values!");
+            throw new ApiRequestException(u + "in user role database exist please insert another user with different values!");
         }
-        throw new Exception("Id for role : " + roleId + ", and id for user : " + userId + " don't exist in database !");
     }
 
     public List<UserRole> findAll() {

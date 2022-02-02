@@ -1,52 +1,76 @@
 package com.moviesproject.moviesproject.service;
 
+import com.moviesproject.moviesproject.dto.DTOLanguage;
+import com.moviesproject.moviesproject.exception.ApiRequestException;
 import com.moviesproject.moviesproject.model.Language;
 import com.moviesproject.moviesproject.repository.LanguageRepository;
 import lombok.Data;
-
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 @Data
 public class LanguageService {
-
     private final LanguageRepository languageRepository;
 
-    public Language save(Language language) throws Exception {
-           if (language.getCode().length <= 10) {
-               return languageRepository.save(language);
-           }
-             throw new Exception("Your lenght is to long !");
+    public DTOLanguage createNewLanguage(DTOLanguage dtoLanguage) {
+        Language convertForSave = DTOLanguage.DTOLanguageToEntity(dtoLanguage);
+        if (languageRepository.existsByName(convertForSave.getName())) {
+            throw new ApiRequestException("Language with : " + convertForSave.getName() + " exists in database !");
+        } else if (languageRepository.existsByCode(convertForSave.getCode())) {
+            throw new ApiRequestException("Code is in use for some Language ! Please insert another !");
+        } else if (convertForSave.getName().length() > 100) {
+            throw new ApiRequestException("Name for Language is to long ! Must be less then 100 characters !");
+        } else if (convertForSave.getCode().length() > 10) {
+            throw new ApiRequestException("Code : " + convertForSave.getCode().toString() + " for Language is to Long ! Must be less then 10 characters !");
+        } else {
+            return DTOLanguage.entityLanguageToDTO(languageRepository.save(convertForSave));
+        }
     }
 
-    public Language findOneLanguage(Integer id) {
-        Optional<Language> language = languageRepository.findById(id);
-        if(language.isPresent()){
-            return language.get();
-        }return null;
+    public Page<Language> allLanguageWithPage(Pageable pageable) {
+        Page<Language> list = languageRepository.findAll(pageable);
+        if (list.isEmpty()) {
+            throw new ApiRequestException("Database is empty !");
+        } else {
+            return list;
+        }
     }
 
-
-    public List<Language> findAllLanguage() {
-        return languageRepository.findAll();
+    public void delete(Integer id) {
+        if (languageRepository.existsById(id)) {
+            languageRepository.deleteById(id);
+        } else {
+            throw new ApiRequestException("Language can't be deleted ! Because Language with id:" + id + " don't exists in database !");
+        }
     }
 
-    public Language update(Integer id, String name, char[] code) throws Exception {
-        Language find = findOneLanguage(id);
-        find.setName(name);
-        find.setCode(code);
-        if(find.getCode().length <= 10) {
-            return languageRepository.save(find);
-        } throw new Exception("Your lenght is to long !");
+    public Page<Language> getByLanguagePage(String name, Pageable pageable) {
+        if (languageRepository.existsByName(name)) {
+            return languageRepository.findByName(name, pageable);
+        } else {
+            throw new ApiRequestException("Language with name : " + name + " don't exists in database !");
+        }
     }
 
-    public String delete(Integer id) {
-        languageRepository.deleteById(id);
-        return "Language with id: "+String.valueOf(id)+" is delete !";
+    public Page<Language> getByCodePage(String code, Pageable pageable) {
+        if (languageRepository.existsByCode(code)) {
+            return languageRepository.findByCode(code, pageable);
+        } else {
+            throw new ApiRequestException("Language with code : " + code + " don't exists in database !");
+        }
+    }
+
+    public Page<Language> languagePagination(Integer page, Integer size) {
+        Page<Language> language = languageRepository.findAll(PageRequest.of(page,size));
+        return language;
+
     }
 }

@@ -34,7 +34,7 @@ public class UserRoleController {
          return  "User role with id : "+id+" is delete !";
     }
 
-    // isto kao i kod usera rijesi preko RequestBody UserRoleDto userRoleDto
+
     @PutMapping("/update-user-role")
     public UserRole update(@RequestParam Integer userRoleId,@RequestParam Integer roleId,@RequestParam Integer userId) throws Exception {
       return userRoleService.updateUserRole(userRoleId,roleId,userId);

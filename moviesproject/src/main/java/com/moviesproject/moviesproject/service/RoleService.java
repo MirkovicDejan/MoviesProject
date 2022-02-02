@@ -6,6 +6,8 @@ import com.moviesproject.moviesproject.model.Role;
 import com.moviesproject.moviesproject.repository.RoleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,10 +16,10 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class RoleService {
-    @Autowired
+
     private final RoleRepository roleRepository;
 
-    public DTORole create(DTORole dtoRole) {
+    public DTORole create(DTORole dtoRole) { // must test !
         Role convertForSave = DTORole.DTORoleToEntityRole(dtoRole); // new solution
         if (!convertForSave.getName().equals(null)) {
             if (convertForSave.getName().toCharArray().length > 30) {
@@ -38,6 +40,14 @@ public class RoleService {
             throw new ApiRequestException("No one name for role exists ! Database is empty !");
         }
         return DTORole.entityToListDTORole(listRole);
+    }
+
+    public Page<Role> allWithPage(Pageable pageable) {
+        Page<Role> listRole = roleRepository.findAll(pageable);
+        if (listRole.isEmpty()) {
+            throw new ApiRequestException("No one name for role exists ! Database is empty !");
+        }
+        return listRole;
     }
 
     public DTORole update(Integer id, DTORole dtoRole) {
