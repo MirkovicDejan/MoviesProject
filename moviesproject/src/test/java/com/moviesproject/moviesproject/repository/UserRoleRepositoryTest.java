@@ -31,4 +31,5 @@ class UserRoleRepositoryTest {
       assertThat(u.getUserId()).isEqualTo(id);
       System.out.println(u.toString());
     }
+
 }
