@@ -53,18 +53,18 @@ class UserServiceTest {
 
     @Test
     void one() {
-        Integer id = 5;
+        Integer id = 2;
         User find = repository.findById(id).get();
         assertThat(find).isNotNull();
         assertThat(find.getUserId()).isEqualTo(id);
         assertThat(find).isExactlyInstanceOf(User.class);
-        assertThat(find.getUserName()).isEqualTo("U4");
-        assertThat(find.getFirstName()).isEqualTo("First4");
-        assertThat(find.getLastName()).isEqualTo("Last4");
-        assertThat(find.getAdress()).isEqualTo("ulica4");
-        assertThat(find.getPhoneNumber()).isEqualTo("tel broj4");
-        assertThat(find.getEmail()).isEqualTo("user@4");
-        assertThat(find.getPassword()).isEqualTo("sifra4");
+        assertThat(find.getUserName()).isEqualTo("U1");
+        assertThat(find.getFirstName()).isEqualTo("First1");
+        assertThat(find.getLastName()).isEqualTo("Last1");
+        assertThat(find.getAdress()).isEqualTo("ulica1");
+        assertThat(find.getPhoneNumber()).isEqualTo("tel broj1");
+        assertThat(find.getEmail()).isEqualTo("user@1");
+        assertThat(find.getPassword()).isEqualTo("sifra1");
     }
 
     @Test
@@ -79,13 +79,13 @@ class UserServiceTest {
         Integer userId = 2;
         String userNameForUpdate = "Example";
         //when
-        User userForUpdate = repository.findById(2).get();
+        User userForUpdate = repository.findById(4).get();
         assertThat(userForUpdate.getUserName()).isNotEqualTo(userNameForUpdate);
         //then
         userForUpdate.setUserId(userId);
         userForUpdate.setUserName(userNameForUpdate);
         User check = repository.save(userForUpdate);
-        assertThat(check.getUserName()).isEqualTo(userForUpdate.getUserName());
+        assertThat(check.getUserName()).isEqualTo(userNameForUpdate);
         assertThat(repository.count()).isEqualTo(5);
     }
 
