@@ -28,5 +28,12 @@ public class UserRole {
             this.user=user1;
      }
 
-
+     @Override
+     public String toString() {
+          return "UserRole{" +
+                  "userRoleId=" + userRoleId +
+                  ", role=" + role +
+                  ", user=" + user +
+                  '}';
+     }
 }
