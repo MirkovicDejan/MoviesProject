@@ -38,24 +38,34 @@ class UserControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    //@MockBean
     @Autowired
     private UserService userService;
 
     @Test
-    void saveUser() throws Exception {
-        User user = new User();
+    void saveUser3() throws Exception {
+        
+		User user = new User();
+		User user2 = new User();
         user.setUserName("UsernameExample");
         user.setFirstName("FirstnameExample");
-        user.setLastName("LastExample");
+        
+		
+		user.setLastName("LastExample");
         user.setPassword("PassExamp");
         user.setPhoneNumber("PhoneExamp");
         user.setAdress("AdressExampp");
         user.setEmail("EmailExam");
-        assertThat(user).isNotNull();
+        
+		assertThat(user).isNotNull();
+		assertThat(user).isNotNull();
+		assertThat(user).isNotNull();
         assertThat(user).isExactlyInstanceOf(User.class);
+		
+		assertThat(user).isExactlyInstanceOf(User.class);
+		assertThat(user).isExactlyInstanceOf(User.class);
+		assertThat(user).isExactlyInstanceOf(User.class);
 
-        //given(userService.saveUser(DTOUser.getInstanceDtoUser().entityUserToDTO(user))).willReturn(user);
+        given(userService.saveUser(DTOUser.getInstanceDtoUser().entityUserToDTO(user))).willReturn(user);
 
         mockMvc.perform(post("/save-user").contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.toJson(user)))
@@ -66,17 +76,21 @@ class UserControllerTest {
 
     @Test
     void all() {
+		System.out.println("test");
     }
 
     @Test
     void one() {
+		System.out.println("test");
     }
 
     @Test
     void delete() {
+		System.out.println("test");
     }
 
     @Test
     void update() {
+		System.out.println("test");
     }
 }
