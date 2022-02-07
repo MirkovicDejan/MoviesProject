@@ -32,7 +32,7 @@ public class RoleController {
         return roleService.allWithPage(pageable);
     }
 
-    @PutMapping("update-role")
+    @PutMapping("/update-role")
     public DTORole update(@RequestParam Integer id, @RequestBody DTORole dtoRole){
         return roleService.update(id,dtoRole);
     }

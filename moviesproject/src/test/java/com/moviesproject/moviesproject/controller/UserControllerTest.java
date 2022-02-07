@@ -1,26 +1,29 @@
 package com.moviesproject.moviesproject.controller;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.moviesproject.moviesproject.JsonUtil.JsonUtil;
+
 import com.moviesproject.moviesproject.model.User;
 import com.moviesproject.moviesproject.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
+import static org.hamcrest.CoreMatchers.is;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
-
-import static net.bytebuddy.matcher.ElementMatchers.is;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.jsonPath;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.Matchers.hasSize;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
@@ -36,30 +39,6 @@ class UserControllerTest {
     private UserService userService;
 
     @Test
-    void saveUser3() throws Exception {
-
-        User user = new User();
-        User user2 = new User();
-        user.setUserName("UsernameExample");
-        user.setFirstName("FirstnameExample");
-
-
-        user.setLastName("LastExample");
-        user.setPassword("PassExamp");
-        user.setPhoneNumber("PhoneExamp");
-        user.setAdress("AdressExampp");
-        user.setEmail("EmailExam");
-
-        assertThat(user).isNotNull();
-        assertThat(user).isNotNull();
-        assertThat(user).isNotNull();
-        assertThat(user).isExactlyInstanceOf(User.class);
-
-        assertThat(user).isExactlyInstanceOf(User.class);
-        assertThat(user).isExactlyInstanceOf(User.class);
-        assertThat(user).isExactlyInstanceOf(User.class);
-    }
-
     void saveUser() throws Exception {
         User user3 = new User();
         user3.setUserName("UsernameExample33");
@@ -72,21 +51,83 @@ class UserControllerTest {
         assertThat(user3).isNotNull();
         assertThat(user3).isExactlyInstanceOf(User.class);
 
-        given(userService.saveUser(DTOUser.getInstanceDtoUser().entityUserToDTO(user))).willReturn(user);
-
         mockMvc.perform(post("/save-user").contentType(MediaType.APPLICATION_JSON)
-                .content(JsonUtil.toJson(user3)))
+                        .content(JsonUtil.toJson(user3)))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(status().isOk())
-                .andExpect((ResultMatcher) jsonPath("$.userName", is(user3.getUserName())));
-
-
-        // This is for source conflict
+                .andExpect(jsonPath("$.userName", is(user3.getUserName())))
+                .andExpect(jsonPath("$.firstName",is(user3.getFirstName())))
+                .andExpect(jsonPath("$.lastName", is(user3.getLastName())))
+                .andExpect(jsonPath("$.adress",is(user3.getAdress())))
+                .andExpect(jsonPath("$.phoneNumber", is(user3.getPhoneNumber())))
+                .andExpect(jsonPath("$.email", is(user3.getEmail())))
+                .andExpect(jsonPath("$.password", is(user3.getPassword())));
     }
 
     @Test
-    void all() {
-		System.out.println("test");
+    void all() throws Exception{
+
+        mockMvc.perform(get("/all-users").contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$",hasSize(5)))
+                .andExpect(jsonPath("$[0].userName",is(getUser().getUserName())));
+
+
     }
 
+    @Test
+    void findOne() throws Exception{
+
+        mockMvc.perform(get("/find-one?id="+getUser().getUserId()).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("userName",is(getUser().getUserName())))
+                .andExpect(jsonPath("firstName",is(getUser().getFirstName())))
+                .andExpect(jsonPath("lastName",is(getUser().getLastName())))
+                .andExpect(jsonPath("password",is(getUser().getPassword())))
+                .andExpect(jsonPath("phoneNumber",is(getUser().getPhoneNumber())))
+                .andExpect(jsonPath("adress",is(getUser().getAdress())))
+                .andExpect(jsonPath("email",is(getUser().getEmail())));
+
+    }
+
+    @Test
+    void updateTest()throws Exception{
+        ObjectMapper mapper = new ObjectMapper();
+        mockMvc.perform(put("/update-user?id="+getUpdateuser().getUserId()).content(mapper.writeValueAsString(getUpdateuser())).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk()).andExpect(jsonPath("userName",is(getUpdateuser().getUserName())));
+
+    }
+
+    @Test
+    void deleteTets()throws Exception{
+        User u = getUser();
+        mockMvc.perform(delete("/delete-mapping?id="+5).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
+
+    private User getUser() {
+        User user1 = new User();
+        user1.setUserId(1);
+        user1.setUserName("U");
+        user1.setFirstName("First");
+        user1.setLastName("Last");
+        user1.setPassword("sifra");
+        user1.setPhoneNumber("tel broj");
+        user1.setAdress("ulica");
+        user1.setEmail("user@");
+        return user1;
+    }
+
+    private User getUpdateuser(){
+        User user2 = new User();
+        user2.setUserId(1);
+        user2.setUserName("UPDATE");
+        user2.setFirstName("UPDATE");
+        user2.setLastName("UPDATE");
+        user2.setPassword("UPDATE");
+        user2.setPhoneNumber("UPDATE");
+        user2.setAdress("UPDATE");
+        user2.setEmail("UPDATE");
+        return user2;
+    }
 }

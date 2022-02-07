@@ -59,7 +59,7 @@ public class UserRoleService {
     public UserRole updateUserRole(Integer userRoleId, Integer roleId, Integer userId) {
         if (!userRoleRepository.existsById(userRoleId)) {
             throw new ApiRequestException("UserRole with id : " + userRoleId + " don't exists in database !");
-        } else if (userRepository.existsById(userId)) {
+        } else if (!userRepository.existsById(userId)) {
             throw new ApiRequestException("User with id : " + userId + " don't exists in database user!");
         } else if (!roleRepository.existsById(roleId)) {
             throw new ApiRequestException("Role with id : " + roleId + " don't exists in database role");
