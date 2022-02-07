@@ -6,19 +6,19 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 // u ovoj klasi ce moyda biti greska
-@Table(name="ContentGenere")
+@Table(name="ContentGenre")
 @Entity
 @NoArgsConstructor
 @Data
-public class ContentGenere {
+public class ContentGenre {
     @Id
     @GeneratedValue
-    @Column(name="contentGenereId",insertable = false,updatable = false)
+    @Column(name="contentGenreId",insertable = false,updatable = false)
     private Integer contentGenereId;
 
     @ManyToOne
-    @JoinColumn(name="genereId")
-    private Genere genere;
+    @JoinColumn(name="genreId")
+    private Genre genre;
 
 
 

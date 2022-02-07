@@ -11,32 +11,30 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 public class UserController {
-
     private final UserService userService;
 
     @PostMapping("/save-user")
-    public User saveUser(@RequestBody DTOUser dtoUser){
-        return userService.saveUser(dtoUser.createUser());
+    public User saveUser(@RequestBody DTOUser dtoUser) {
+        return userService.saveUser(dtoUser);
     }
-    @GetMapping("/find-one-user")
-    public User findOneUser(@RequestParam Integer id){
-        return userService.findOneUsre(id);
+
+    @GetMapping("/all-users")
+    public List<DTOUser> all() {
+        return userService.all();
     }
-    @GetMapping({"/find-all-user",""})
-    public List<User>findAllUser(){
-        return userService.findAllUser();
+
+    @GetMapping("/find-one")
+    public DTOUser one(@RequestParam Integer id) {
+        return userService.one(id);
+    }
+
+    @DeleteMapping("/delete-mapping")
+    public void delete(@RequestParam Integer id) {
+        userService.delete(id);
     }
 
     @PutMapping("/update-user")
-    public User updateUser(@RequestParam Integer id,@RequestParam String userName,@RequestParam String firstName,@RequestParam String lastname,
-                           @RequestParam String adress,@RequestParam String phoneNumber,@RequestParam String email,@RequestParam String password){
-        return userService.updateUser(id,userName,firstName,lastname,adress,phoneNumber,email,password);
+    public DTOUser update(@RequestParam Integer id,@RequestBody DTOUser dtoUser){
+        return userService.update(id,dtoUser);
     }
-
-    @DeleteMapping("/delete-user")
-    public String deleteUser(@RequestParam Integer id){
-        userService.deleteUser(id);
-        return  "User with id : "+String.valueOf(id)+" is delete !";
-    }
-
 }

@@ -14,7 +14,7 @@ import java.util.Date;
 public class Content {
     @Id()
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "contentId", insertable = false, updatable = false)
+    @Column(name = "contentId")
     private Integer contentId;
 
     @ManyToOne
@@ -50,4 +50,17 @@ public class Content {
 
     @Lob
     private String trailerLink;
+
+    public Content(ContentType contentType, Country country, Language language, String title, Integer year, Integer duration, Date releaseDate, float rating, String coverLink, String trailerLink) {
+        this.contentType = contentType;
+        this.country = country;
+        this.language = language;
+        this.title = title;
+        this.year = year;
+        this.duration = duration;
+        this.releaseDate = releaseDate;
+        this.rating = rating;
+        this.coverLink = coverLink;
+        this.trailerLink = trailerLink;
+    }
 }

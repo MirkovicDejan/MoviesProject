@@ -20,5 +20,11 @@ public class Language {
     private String name;
 
     @Column(name="code",length = 10)
-    private char code [];
+    private String code ;
+
+    public Language(Integer languageId, String name, String code) {
+        this.languageId = languageId;
+        this.name = name;
+        this.code = code;
+    }
 }

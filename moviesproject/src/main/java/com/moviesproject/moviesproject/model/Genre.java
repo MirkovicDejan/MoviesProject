@@ -5,16 +5,16 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Table(name="Genere")
+@Table(name="Genre")
 @Entity
 @NoArgsConstructor
 @Data
-public class Genere {
+public class Genre {
 
     @Id()
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="genereId",insertable = false,updatable = false)
-    private Integer genereId;
+    @Column(name="genreId",insertable = false,updatable = false)
+    private Integer genreId;
 
     @Column(name="name")
     private String name;

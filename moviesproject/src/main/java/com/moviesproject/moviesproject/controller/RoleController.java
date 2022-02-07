@@ -4,6 +4,9 @@ import com.moviesproject.moviesproject.dto.DTORole;
 import com.moviesproject.moviesproject.model.Role;
 import com.moviesproject.moviesproject.service.RoleService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,29 +17,33 @@ public class RoleController {
 
     private final RoleService roleService;
 
-    @PostMapping("/createRole")
-    public Role createRole(@RequestBody DTORole dtoRole){
-        return roleService.createRole(dtoRole.createRole());
+    @PostMapping("/save-role")
+    public DTORole create(@RequestBody DTORole dtoRole){
+        return roleService.create(dtoRole);
     }
 
-    @GetMapping("/findOneRole")
-    public Role findOneRole(@RequestParam Integer id){
-        return roleService.findOneRole(id);
+    @GetMapping("/get-all-role")
+    public List<DTORole> all() {
+        return roleService.all();
     }
 
-    @GetMapping("/finAllRole")
-    public List<Role> findAllRole(){
-        return roleService.findAllRole();
+    @GetMapping("/get-all-role-page")
+    public Page<Role> allWithPage(Pageable pageable) {
+        return roleService.allWithPage(pageable);
     }
 
-    @PutMapping("/updateRole")
-    public Role updateRole(@RequestParam Integer id,@RequestParam String name){
-        return roleService.updateRole(id,name);
+    @PutMapping("update-role")
+    public DTORole update(@RequestParam Integer id, @RequestBody DTORole dtoRole){
+        return roleService.update(id,dtoRole);
+    }
+    @GetMapping("/find-one-role")
+    public DTORole one(@RequestParam Integer id){
+        return roleService.one(id);
+    }
+    @DeleteMapping("/delete-role")
+    public void delete(@RequestParam Integer id){
+        roleService.delete(id);
     }
 
-    @DeleteMapping("/deleteRole")
-    public String deleteRole(@RequestParam Integer id){
-        roleService.deleteRole(id);
-        return "Role with id : "+String.valueOf(id)+" is delete !";
-    }
+
 }

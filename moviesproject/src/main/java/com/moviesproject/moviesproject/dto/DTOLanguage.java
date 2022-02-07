@@ -5,17 +5,21 @@ import lombok.Data;
 
 @Data
 public class DTOLanguage {
-
     private String name;
-    private char [] code;
+    private String code;
 
-    public Language createLanguage(){
-
-        Language language = new Language();
-        language.setName(name);
-        language.setCode(code);
-
-        return language;
-
+    public static DTOLanguage entityLanguageToDTO(Language language){
+        DTOLanguage dto = new DTOLanguage();
+        dto.setName(language.getName());
+        dto.setCode(language.getCode());
+        return dto;
     }
+
+    public static Language DTOLanguageToEntity(DTOLanguage dtoLanguage){
+        Language language = new Language();
+        language.setName(dtoLanguage.getName());
+        language.setCode(dtoLanguage.getCode());
+        return language;
+    }
+
 }

@@ -4,11 +4,9 @@ import com.moviesproject.moviesproject.dto.DTOCountry;
 import com.moviesproject.moviesproject.model.Country;
 import com.moviesproject.moviesproject.service.CountryService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor

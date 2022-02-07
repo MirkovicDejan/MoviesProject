@@ -1,4 +1,4 @@
-package com.moviesproject.moviesproject.config;
+/*package com.moviesproject.moviesproject.config;
 
 
 import com.moviesproject.moviesproject.service.MyUserDeatilsService;
@@ -32,4 +32,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
 }
-
+*/

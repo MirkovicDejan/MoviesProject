@@ -18,7 +18,7 @@ public class CountryService {
         if (country.getCode().length <= 10) {
             return countryRepository.save(country);
         }
-        throw new Exception("Your lenght is to long !");
+        throw new Exception("Your length is to long !");
     }
 
     public List<Country> findAllCountry() {
