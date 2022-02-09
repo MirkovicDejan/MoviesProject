@@ -1,7 +1,7 @@
 package com.moviesproject.moviesproject.repository;
 
 import MyQueries.MyQUERIES;
-import com.moviesproject.moviesproject.model.Role;
+import com.moviesproject.moviesproject.repository.model.Role;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;

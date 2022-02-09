@@ -1,9 +1,8 @@
 package com.moviesproject.moviesproject.controller;
 
-import com.moviesproject.moviesproject.model.UserRole;
+import com.moviesproject.moviesproject.repository.model.UserRole;
 import com.moviesproject.moviesproject.service.UserRoleService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

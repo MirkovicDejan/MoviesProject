@@ -2,7 +2,7 @@ package com.moviesproject.moviesproject.service;
 
 import com.moviesproject.moviesproject.dto.DTOLanguage;
 import com.moviesproject.moviesproject.exception.ApiRequestException;
-import com.moviesproject.moviesproject.model.Language;
+import com.moviesproject.moviesproject.repository.model.Language;
 import com.moviesproject.moviesproject.repository.LanguageRepository;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -11,9 +11,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor

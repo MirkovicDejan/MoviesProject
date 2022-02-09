@@ -1,16 +1,12 @@
 package com.moviesproject.moviesproject.controller;
 
 import com.moviesproject.moviesproject.dto.DTOLanguage;
-import com.moviesproject.moviesproject.exception.ApiRequestException;
-import com.moviesproject.moviesproject.model.Language;
+import com.moviesproject.moviesproject.repository.model.Language;
 import com.moviesproject.moviesproject.service.LanguageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor

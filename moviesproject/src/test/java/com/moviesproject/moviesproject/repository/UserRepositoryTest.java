@@ -1,7 +1,7 @@
 package com.moviesproject.moviesproject.repository;
 
 import MyQueries.MyQUERIES;
-import com.moviesproject.moviesproject.model.User;
+import com.moviesproject.moviesproject.repository.model.User;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

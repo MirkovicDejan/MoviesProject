@@ -1,6 +1,6 @@
 package com.moviesproject.moviesproject.repository;
 
-import com.moviesproject.moviesproject.model.User;
+import com.moviesproject.moviesproject.repository.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

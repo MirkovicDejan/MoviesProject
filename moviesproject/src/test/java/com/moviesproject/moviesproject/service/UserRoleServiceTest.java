@@ -1,8 +1,8 @@
 package com.moviesproject.moviesproject.service;
 
-import com.moviesproject.moviesproject.model.Role;
-import com.moviesproject.moviesproject.model.User;
-import com.moviesproject.moviesproject.model.UserRole;
+import com.moviesproject.moviesproject.repository.model.Role;
+import com.moviesproject.moviesproject.repository.model.User;
+import com.moviesproject.moviesproject.repository.model.UserRole;
 import com.moviesproject.moviesproject.repository.RoleRepository;
 import com.moviesproject.moviesproject.repository.UserRepository;
 import com.moviesproject.moviesproject.repository.UserRoleRepository;
@@ -13,7 +13,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)

@@ -1,6 +1,6 @@
 package com.moviesproject.moviesproject.dto;
 
-import com.moviesproject.moviesproject.model.Role;
+import com.moviesproject.moviesproject.repository.model.Role;
 import lombok.Data;
 
 import java.util.List;

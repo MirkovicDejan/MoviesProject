@@ -2,9 +2,8 @@ package com.moviesproject.moviesproject.service;
 
 import com.moviesproject.moviesproject.dto.DTOUser;
 import com.moviesproject.moviesproject.exception.ApiRequestException;
-import com.moviesproject.moviesproject.model.User;
+import com.moviesproject.moviesproject.repository.model.User;
 import com.moviesproject.moviesproject.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

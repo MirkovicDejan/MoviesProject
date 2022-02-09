@@ -2,16 +2,14 @@ package com.moviesproject.moviesproject.service;
 
 import com.moviesproject.moviesproject.dto.DTORole;
 import com.moviesproject.moviesproject.exception.ApiRequestException;
-import com.moviesproject.moviesproject.model.Role;
+import com.moviesproject.moviesproject.repository.model.Role;
 import com.moviesproject.moviesproject.repository.RoleRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

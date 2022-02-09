@@ -4,7 +4,7 @@ package com.moviesproject.moviesproject.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.moviesproject.moviesproject.JsonUtil.JsonUtil;
 
-import com.moviesproject.moviesproject.model.User;
+import com.moviesproject.moviesproject.repository.model.User;
 import com.moviesproject.moviesproject.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;

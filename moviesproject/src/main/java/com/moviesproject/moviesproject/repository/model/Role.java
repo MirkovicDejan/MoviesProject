@@ -1,4 +1,4 @@
-package com.moviesproject.moviesproject.model;
+package com.moviesproject.moviesproject.repository.model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
