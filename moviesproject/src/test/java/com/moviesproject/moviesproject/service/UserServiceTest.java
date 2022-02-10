@@ -1,6 +1,6 @@
 package com.moviesproject.moviesproject.service;
 
-import com.moviesproject.moviesproject.repository.model.User;
+import com.moviesproject.moviesproject.model.User;
 import com.moviesproject.moviesproject.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;

@@ -1,6 +1,6 @@
 package com.moviesproject.moviesproject.dto;
 
-import com.moviesproject.moviesproject.repository.model.Language;
+import com.moviesproject.moviesproject.model.Language;
 import lombok.Data;
 
 @Data

@@ -1,7 +1,7 @@
 package com.moviesproject.moviesproject.controller;
 
 import com.moviesproject.moviesproject.dto.DTORole;
-import com.moviesproject.moviesproject.repository.model.Role;
+import com.moviesproject.moviesproject.model.Role;
 import com.moviesproject.moviesproject.service.RoleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

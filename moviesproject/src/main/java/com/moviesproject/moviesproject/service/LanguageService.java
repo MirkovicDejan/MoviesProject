@@ -2,7 +2,7 @@ package com.moviesproject.moviesproject.service;
 
 import com.moviesproject.moviesproject.dto.DTOLanguage;
 import com.moviesproject.moviesproject.exception.ApiRequestException;
-import com.moviesproject.moviesproject.repository.model.Language;
+import com.moviesproject.moviesproject.model.Language;
 import com.moviesproject.moviesproject.repository.LanguageRepository;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;

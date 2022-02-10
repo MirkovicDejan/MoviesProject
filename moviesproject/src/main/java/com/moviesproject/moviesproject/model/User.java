@@ -1,13 +1,13 @@
-package com.moviesproject.moviesproject.repository.model;
+package com.moviesproject.moviesproject.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name="User")
-@NoArgsConstructor
 @Data
 public class User {
     @Id()
@@ -35,6 +35,10 @@ public class User {
 
     @Column(name="password",length = 255)
     private String password;
+
+    public User(){
+
+    }
 
     public User(String userName, String firstName, String lastName, String adress, String phoneNumber, String email,String password) {
         this.userName = userName;

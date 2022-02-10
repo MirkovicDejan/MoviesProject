@@ -1,8 +1,8 @@
 package com.moviesproject.moviesproject.service;
 
-import com.moviesproject.moviesproject.repository.model.Role;
-import com.moviesproject.moviesproject.repository.model.User;
-import com.moviesproject.moviesproject.repository.model.UserRole;
+import com.moviesproject.moviesproject.model.Role;
+import com.moviesproject.moviesproject.model.User;
+import com.moviesproject.moviesproject.model.UserRole;
 import com.moviesproject.moviesproject.repository.RoleRepository;
 import com.moviesproject.moviesproject.repository.UserRepository;
 import com.moviesproject.moviesproject.repository.UserRoleRepository;
@@ -97,5 +97,10 @@ class UserRoleServiceTest {
         boolean check = userRoleRepository.existsByUser(user);
         assertThat(check).isNotNull();
         assertThat(check).isTrue();
+    }
+
+    @Test
+    void findByUserName(){
+
     }
 }

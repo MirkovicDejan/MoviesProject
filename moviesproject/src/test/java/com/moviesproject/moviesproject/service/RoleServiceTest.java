@@ -1,6 +1,6 @@
 package com.moviesproject.moviesproject.service;
 
-import com.moviesproject.moviesproject.repository.model.Role;
+import com.moviesproject.moviesproject.model.Role;
 import com.moviesproject.moviesproject.repository.RoleRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;

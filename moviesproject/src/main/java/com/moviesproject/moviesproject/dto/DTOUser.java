@@ -1,6 +1,6 @@
 package com.moviesproject.moviesproject.dto;
 
-import com.moviesproject.moviesproject.repository.model.User;
+import com.moviesproject.moviesproject.model.User;
 import lombok.Data;
 
 import java.util.List;

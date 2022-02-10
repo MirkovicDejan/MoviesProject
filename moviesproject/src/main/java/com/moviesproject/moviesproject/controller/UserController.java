@@ -1,7 +1,7 @@
 package com.moviesproject.moviesproject.controller;
 
 import com.moviesproject.moviesproject.dto.DTOUser;
-import com.moviesproject.moviesproject.repository.model.User;
+import com.moviesproject.moviesproject.model.User;
 import com.moviesproject.moviesproject.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -37,5 +37,5 @@ public class UserController {
     public DTOUser update(@RequestParam Integer id,@RequestBody DTOUser dtoUser){
         return userService.update(id,dtoUser);
     }
-   
+
 }

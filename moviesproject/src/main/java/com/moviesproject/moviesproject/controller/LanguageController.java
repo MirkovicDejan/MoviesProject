@@ -1,7 +1,7 @@
 package com.moviesproject.moviesproject.controller;
 
 import com.moviesproject.moviesproject.dto.DTOLanguage;
-import com.moviesproject.moviesproject.repository.model.Language;
+import com.moviesproject.moviesproject.model.Language;
 import com.moviesproject.moviesproject.service.LanguageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
