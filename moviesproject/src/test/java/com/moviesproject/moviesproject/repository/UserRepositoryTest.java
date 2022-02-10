@@ -63,8 +63,8 @@ class UserRepositoryTest {
         User afterUpdate = (User) query2.getSingleResult();
         assertThat(afterUpdate).isNotNull();
         assertThat(afterUpdate).isExactlyInstanceOf(User.class);
-        assertThat(afterUpdate.getUserName()).isEqualTo(userNameUpdate);
-        System.out.println(afterUpdate.getUserName());
+        assertThat(afterUpdate.getUsername()).isEqualTo(userNameUpdate);
+        System.out.println(afterUpdate.getUsername());
     }
 
     @Test

@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-
 public class UserService {
     private final UserRepository userRepository;
 
@@ -22,8 +21,8 @@ public class UserService {
 
     public User saveUser(DTOUser dtoUser) {
         User convert = DTOUser.getInstanceDtoUser().DTOUserToEntityUser(dtoUser);
-        if (userRepository.existsByUserName(convert.getUserName())) {
-            throw new ApiRequestException("UserName ERROR !!! User with user name : " + convert.getUserName() + " exist in database !");
+        if (userRepository.existsByUserName(convert.getUsername())) {
+            throw new ApiRequestException("UserName ERROR !!! User with user name : " + convert.getUsername() + " exist in database !");
         } else if (userRepository.existsByEmail(convert.getEmail())) {
             throw new ApiRequestException("Email ERROR !!! User with email: " + convert.getEmail() + " exist in database !");
         } else if (userRepository.existsByPassword(convert.getPassword())) {
@@ -63,8 +62,8 @@ public class UserService {
     public DTOUser update(Integer id, DTOUser dtoUser) {
         User convertUpdate = DTOUser.getInstanceDtoUser().DTOUserToEntityUser(dtoUser);
         if (userRepository.existsById(id)) {
-            if (userRepository.existsByUserName(convertUpdate.getUserName())) {
-                throw new ApiRequestException("Name : " + convertUpdate.getUserName() + " is in use for another User, please insert another !");
+            if (userRepository.existsByUserName(convertUpdate.getUsername())) {
+                throw new ApiRequestException("Name : " + convertUpdate.getUsername() + " is in use for another User, please insert another !");
             } else if (userRepository.existsByEmail(convertUpdate.getEmail())) {
                 throw new ApiRequestException("E-mail : " + convertUpdate.getEmail() + " is in use for another User, please insert another !");
             } else if (userRepository.existsByPhoneNumber(convertUpdate.getPhoneNumber())) {

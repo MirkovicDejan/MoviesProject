@@ -57,7 +57,7 @@ class UserServiceTest {
         assertThat(find).isNotNull();
         assertThat(find.getUserId()).isEqualTo(id);
         assertThat(find).isExactlyInstanceOf(User.class);
-        assertThat(find.getUserName()).isEqualTo("U1");
+        assertThat(find.getUsername()).isEqualTo("U1");
         assertThat(find.getFirstName()).isEqualTo("First1");
         assertThat(find.getLastName()).isEqualTo("Last1");
         assertThat(find.getAdress()).isEqualTo("ulica1");
@@ -79,12 +79,12 @@ class UserServiceTest {
         String userNameForUpdate = "Example";
         //when
         User userForUpdate = repository.findById(4).get();
-        assertThat(userForUpdate.getUserName()).isNotEqualTo(userNameForUpdate);
+        assertThat(userForUpdate.getUsername()).isNotEqualTo(userNameForUpdate);
         //then
         userForUpdate.setUserId(userId);
         userForUpdate.setUserName(userNameForUpdate);
         User check = repository.save(userForUpdate);
-        assertThat(check.getUserName()).isEqualTo(userNameForUpdate);
+        assertThat(check.getUsername()).isEqualTo(userNameForUpdate);
         assertThat(repository.count()).isEqualTo(5);
     }
 

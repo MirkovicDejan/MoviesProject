@@ -16,7 +16,7 @@ import java.util.Collections;
 @Table(name = "UserRole")
 @Data
 @EqualsAndHashCode
-public class UserRole implements UserDetails {
+public class UserRole {
     @Id()
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "userRoleId")
@@ -51,39 +51,4 @@ public class UserRole implements UserDetails {
                 '}';
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(rolePremission.name());
-        return Collections.singletonList(authority);
-    }
-
-    @Override
-    public String getPassword() {
-        return getUser().getPassword();
-    }
-
-    @Override
-    public String getUsername() {
-        return getUser().getUserName();
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
 }

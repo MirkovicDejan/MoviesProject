@@ -130,7 +130,7 @@ class UserRoleRepositoryTest {
         assertThat(findOne).isExactlyInstanceOf(UserRole.class);
         assertThat(findOne.getUserRoleId()).isEqualTo(userRoleId);
         assertThat(findOne.getRole().getName()).isEqualTo("ADMIN");
-        assertThat(findOne.getUser().getUserName()).isEqualTo("U3");
+        assertThat(findOne.getUser().getUsername()).isEqualTo("U3");
         System.out.println(findOne);
     }
 
@@ -143,7 +143,7 @@ class UserRoleRepositoryTest {
       assertThat(u).isNotNull();
       assertThat(u.getUserId()).isEqualTo(id);
       assertThat(u).isExactlyInstanceOf(User.class);
-      assertThat(u.getUserName()).isEqualTo("U3");
+      assertThat(u.getUsername()).isEqualTo("U3");
       System.out.println(u);
     }
 

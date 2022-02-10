@@ -55,7 +55,7 @@ class UserControllerTest {
                         .content(JsonUtil.toJson(user3)))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.userName", is(user3.getUserName())))
+                .andExpect(jsonPath("$.userName", is(user3.getUsername())))
                 .andExpect(jsonPath("$.firstName",is(user3.getFirstName())))
                 .andExpect(jsonPath("$.lastName", is(user3.getLastName())))
                 .andExpect(jsonPath("$.adress",is(user3.getAdress())))
@@ -70,7 +70,7 @@ class UserControllerTest {
         mockMvc.perform(get("/all-users").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$",hasSize(5)))
-                .andExpect(jsonPath("$[0].userName",is(getUser().getUserName())));
+                .andExpect(jsonPath("$[0].userName",is(getUser().getUsername())));
 
 
     }
@@ -80,7 +80,7 @@ class UserControllerTest {
 
         mockMvc.perform(get("/find-one?id="+getUser().getUserId()).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("userName",is(getUser().getUserName())))
+                .andExpect(jsonPath("userName",is(getUser().getUsername())))
                 .andExpect(jsonPath("firstName",is(getUser().getFirstName())))
                 .andExpect(jsonPath("lastName",is(getUser().getLastName())))
                 .andExpect(jsonPath("password",is(getUser().getPassword())))
@@ -94,7 +94,7 @@ class UserControllerTest {
     void updateTest()throws Exception{
         ObjectMapper mapper = new ObjectMapper();
         mockMvc.perform(put("/update-user?id="+getUpdateuser().getUserId()).content(mapper.writeValueAsString(getUpdateuser())).contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk()).andExpect(jsonPath("userName",is(getUpdateuser().getUserName())));
+                .andExpect(status().isOk()).andExpect(jsonPath("userName",is(getUpdateuser().getUsername())));
 
     }
 
