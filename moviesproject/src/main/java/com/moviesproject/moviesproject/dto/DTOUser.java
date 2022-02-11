@@ -27,7 +27,7 @@ public class DTOUser {
 
     public DTOUser entityUserToDTO(User user) {
         DTOUser dtoUser = new DTOUser();
-        dtoUser.setUserName(user.getUsername());
+        dtoUser.setUserName(user.getUserName());
         dtoUser.setFirstName(user.getFirstName());
         dtoUser.setLastName(user.getLastName());
         dtoUser.setAdress(user.getAdress());

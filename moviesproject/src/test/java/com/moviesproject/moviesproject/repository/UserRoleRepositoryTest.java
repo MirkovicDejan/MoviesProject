@@ -130,7 +130,7 @@ class UserRoleRepositoryTest {
         assertThat(findOne).isExactlyInstanceOf(UserRole.class);
         assertThat(findOne.getUserRoleId()).isEqualTo(userRoleId);
         assertThat(findOne.getRole().getName()).isEqualTo("ADMIN");
-        assertThat(findOne.getUser().getUsername()).isEqualTo("U3");
+        assertThat(findOne.getUser().getUserName()).isEqualTo("U3");
         System.out.println(findOne);
     }
 
@@ -143,8 +143,18 @@ class UserRoleRepositoryTest {
       assertThat(u).isNotNull();
       assertThat(u.getUserId()).isEqualTo(id);
       assertThat(u).isExactlyInstanceOf(User.class);
-      assertThat(u.getUsername()).isEqualTo("U3");
+      assertThat(u.getUserName()).isEqualTo("U3");
       System.out.println(u);
     }
+
+
+ /*   @Test
+    void test(){
+        String userName = "U";
+        Query query = entityManager.getEntityManager().createQuery("SELECT UserRole  FROM UserRole ur WHERE ur.user.userName = :userName");
+        query.setParameter("userName",userName);
+        UserRole findOne = (UserRole) query.getSingleResult();
+        System.out.println(findOne);
+    }*/
 
 }

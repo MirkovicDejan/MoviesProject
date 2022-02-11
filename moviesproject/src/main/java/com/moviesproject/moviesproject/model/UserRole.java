@@ -1,22 +1,13 @@
 package com.moviesproject.moviesproject.model;
 
-import com.moviesproject.moviesproject.security.RolePremission;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Collections;
-
 @Entity
 @Table(name = "UserRole")
 @Data
 @EqualsAndHashCode
-public class UserRole {
+public class UserRole{
     @Id()
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "userRoleId")
@@ -29,9 +20,6 @@ public class UserRole {
     @ManyToOne
     @JoinColumn(name = "userId")
     private User user;
-
-    @Enumerated(EnumType.STRING)
-    private RolePremission rolePremission;
 
     public UserRole() {
 
@@ -50,5 +38,4 @@ public class UserRole {
                 ", user=" + user +
                 '}';
     }
-
 }
