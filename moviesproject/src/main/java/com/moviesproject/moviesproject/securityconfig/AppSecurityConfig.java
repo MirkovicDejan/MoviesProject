@@ -10,7 +10,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -29,7 +28,12 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/","index","/css/*","/js/*")
                 .permitAll()
-                .antMatchers("/find-one-user-role").hasRole("ADMIN")
+                .antMatchers("/find-one-user-role").hasRole(RolePremission.ADMIN.getPremission())
+                .antMatchers("/create-user-role").hasRole(RolePremission.ADMIN.getPremission())
+                .antMatchers("/delete-user-role").hasRole(RolePremission.ADMIN.getPremission())
+                .antMatchers("/update-user-role").hasRole(RolePremission.ADMIN.getPremission())
+                .antMatchers("/find-all-user-role").hasAnyRole(RolePremission.ADMIN.getPremission(),RolePremission.USER.getPremission()
+                        ,RolePremission.SUPER_USER.getPremission(),RolePremission.GUEST.getPremission())
                 .anyRequest()
                 .authenticated()
                 .and()
