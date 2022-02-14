@@ -12,8 +12,10 @@ import static org.hamcrest.CoreMatchers.is;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -38,6 +40,7 @@ class UserControllerTest {
     @Autowired
     private UserService userService;
 
+    @WithMockUser(username="U3",password = "sifra3", roles = "ADMIN")
     @Test
     void saveUser() throws Exception {
         User user3 = new User();
@@ -64,6 +67,7 @@ class UserControllerTest {
                 .andExpect(jsonPath("$.password", is(user3.getPassword())));
     }
 
+    @WithMockUser(username="U3",password = "sifra3", roles = "ADMIN")
     @Test
     void all() throws Exception{
 
@@ -75,6 +79,7 @@ class UserControllerTest {
 
     }
 
+    @WithMockUser(username="U3",password = "sifra3", roles = "ADMIN")
     @Test
     void findOne() throws Exception{
 
@@ -90,6 +95,7 @@ class UserControllerTest {
 
     }
 
+    @WithMockUser(username="U3",password = "sifra3", roles = "ADMIN")
     @Test
     void updateTest()throws Exception{
         ObjectMapper mapper = new ObjectMapper();
@@ -98,6 +104,7 @@ class UserControllerTest {
 
     }
 
+    @WithMockUser(username="U3",password = "sifra3", roles = "ADMIN")
     @Test
     void deleteTets()throws Exception{
         User u = getUser();
