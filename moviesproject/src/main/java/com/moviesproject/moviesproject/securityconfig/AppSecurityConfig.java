@@ -50,6 +50,8 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/delete-role").hasRole(RolePremission.ADMIN.getPremission())
                 .antMatchers("/get-all-role").hasAnyRole(RolePremission.ADMIN.getPremission(), RolePremission.USER.getPremission()
                         , RolePremission.SUPER_USER.getPremission(), RolePremission.GUEST.getPremission())
+                //authorize weather
+                .antMatchers("/get-weather").hasRole(RolePremission.ADMIN.getPremission())
                 .anyRequest()
                 .authenticated()
                 .and()

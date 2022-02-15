@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import static org.hamcrest.Matchers.hasSize;
@@ -35,6 +36,7 @@ class UserRoleControllerTest {
     @Autowired
     private RoleService roleService;
 
+    @WithMockUser(username="U3",password = "sifra3", roles = "ADMIN")
     @Test
     void createUserRole() throws Exception {
         Integer userId = 5;
@@ -47,6 +49,7 @@ class UserRoleControllerTest {
 
     }
 
+    @WithMockUser(username="U3",password = "sifra3", roles = "ADMIN")
     @Test
     void findAll() throws Exception {
         mockMvc.perform(get("/find-all-user-role").contentType(MediaType.APPLICATION_JSON))
@@ -57,6 +60,7 @@ class UserRoleControllerTest {
 
     }
 
+    @WithMockUser(username="U3",password = "sifra3", roles = "ADMIN")
     @Test
     void findOne() throws Exception {
         mockMvc.perform(get("/find-one-user-role?id="+2).contentType(MediaType.APPLICATION_JSON))
@@ -65,12 +69,14 @@ class UserRoleControllerTest {
                 .andExpect(jsonPath("$.role.name",is("USER")));
     }
 
+    @WithMockUser(username="U3",password = "sifra3", roles = "ADMIN")
     @Test
     void deleteTest() throws Exception {
         mockMvc.perform(delete("/delete-user-role?id="+4).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 
+    @WithMockUser(username="U3",password = "sifra3", roles = "ADMIN")
     @Test
     void update() throws Exception {
         ObjectMapper mapper = new ObjectMapper();

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
@@ -34,6 +35,7 @@ class RoleControllerTest {
     @Autowired
     private RoleService roleService;
 
+    @WithMockUser(username="U3",password = "sifra3", roles = "ADMIN")
     @Test
     void create() throws Exception {
         mockMvc.perform(post("/save-role")
@@ -43,6 +45,7 @@ class RoleControllerTest {
                 .andExpect(jsonPath("$.name",is(getRole().getName())));
     }
 
+    @WithMockUser(username="U3",password = "sifra3", roles = "ADMIN")
     @Test
     void all() throws Exception {
 
@@ -52,6 +55,7 @@ class RoleControllerTest {
                 .andExpect(jsonPath("$[0].name",is("TEST")));
     }
 
+    @WithMockUser(username="U3",password = "sifra3", roles = "ADMIN")
     @Test
     void update() throws Exception {
         ObjectMapper mapper = new ObjectMapper();
@@ -60,6 +64,7 @@ class RoleControllerTest {
 
     }
 
+    @WithMockUser(username="U3",password = "sifra3", roles = "ADMIN")
    @Test
     void one() throws Exception {
         mockMvc.perform(get("/find-one-role"+"?id="+1).contentType(MediaType.APPLICATION_JSON))
@@ -68,6 +73,7 @@ class RoleControllerTest {
 
     }
 
+    @WithMockUser(username="U3",password = "sifra3", roles = "ADMIN")
     @Test
     void deleteTest() throws Exception {
         mockMvc.perform(delete("/delete-role?id="+5).contentType(MediaType.APPLICATION_JSON))
